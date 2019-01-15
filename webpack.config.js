@@ -30,14 +30,6 @@ module.exports = ({ mode }) =>
               use: ["css-loader", "sass-loader"]
             })
           }
-          // {
-          //   test: /\.(svg|png|jpg)$/,
-          //   use: [
-          //     {
-
-          //     }
-          //   ]
-          // }
         ]
       },
       plugins: [

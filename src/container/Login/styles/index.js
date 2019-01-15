@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import {
-  CenterDiv
+  CenterDiv,
+  Button
 } from '../../CommonStyle';
 
 export const Container = styled.div`
@@ -23,7 +24,7 @@ export const LoginCard = styled.div`
   transform: translate(-50%, -50%);
   background-color: #2d3436;
   border-radius: 10px;
-  opactity: 1;
+  opacity: 1;
   box-shadow: 10px 10px 0.9;
 
   @media (max-width: 768px) {
@@ -42,11 +43,13 @@ export const LoginCard = styled.div`
 `;
 
 export const CenterArea = styled(CenterDiv)`
-  height: 30%;
+  height: 100%;
+  display: flex;
+  align-items: center;
 `;
 
 export const InputSection = styled.div`
-  height: 55%;
+  height: 42.5%;
   width: 100%;
 `;
 
@@ -54,11 +57,15 @@ export const InputArea = styled.div`
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+  padding-top: 2rem;
+  & > div {
+    position: relative;
+    width: 100%;
+    height: 45%;
+  }
 `;
 
-export const InputField = styled.input.attrs({
-  type: props => (props.show ? "text" : "password")
-})`
+export const InputField = styled.input`
   border: none;
   cursor: pointer;
   width: 100%;
@@ -70,19 +77,72 @@ export const InputField = styled.input.attrs({
   border: 2px solid rgba(255, 255, 255, 0);
   transition: all 0.5s ease-in-out;
   margin: 10px 0;
-  color: hsla(170, 85%, 95%, 0.21);
+  color: #fff;
+  font-size: 1.5rem;
+  /* color: hsla(170, 85%, 95%, 0.21); */
   &:focus {
     border: 2px solid rgba(255, 255, 255, 0.5);
   }
 `;
 
 export const LoginLabel = styled.label`
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 10%;
   text-align: left;
   display: block;
   font-weight: 800;
-  font-size: .8rem;
+  width: auto;
+  height: auto;
+  font-size: 1rem;
   text-transform: uppercase;
   font-family: "Montserrat", sans-serif;
   transition: all 0.5s ease-in-out;
+  ${InputField}:focus + & {
+    color: #fff;
+  }
+`;
+
+export const ButtonArea = styled.div`
+  max-width: 100%;
+  height: 25%;
+  /* background-color: #ddd; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const CustomButtom = styled(Button)`
+  height: 80%;
+  background-color: inherit;
+  opacity: 0.6;
+  font-size: 1.5rem;
+  position: relative;
+  color: #fff;
+  border-radius: 1rem;
+  margin-left: ${props => props.show ? '1.5rem' : '0'};
+  &:hover {
+    color: #000;
+  }
+
+  &::before {
+    position: absolute;
+    top:0;
+    right: 0;
+    content: '';
+    width: 0px;
+    height: 100%;
+    display: block;
+    z-index: -1;
+    transition: all .7s ease;
+    border-radius: 1rem;
+  }
+
+  &:hover::before {
+    left: 0;
+	  right: 0;
+	  width: 100%;
+    opacity: 0.6;
+    background-color: ${props => props.show ? 'pink' : 'lightgreen'}
+  } 
 `;

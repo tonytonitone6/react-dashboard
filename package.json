@@ -15,7 +15,6 @@
   "author": "mao",
   "license": "ISC",
   "dependencies": {
-    "@material-ui/core": "^3.3.1",
     "axios": "^0.18.0",
     "d3": "^5.7.0",
     "immutable": "^3.8.2",
@@ -26,6 +25,7 @@
     "react": "^16.6.0",
     "react-decoration": "^2.0.0",
     "react-dom": "^16.6.0",
+    "react-intl": "^2.7.2",
     "react-loadable": "^5.5.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
