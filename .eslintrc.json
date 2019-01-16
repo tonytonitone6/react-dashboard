@@ -17,6 +17,7 @@
     "no-underscore-dangle": 0,
     "react/self-closing-comp": 0,
     "react/display-name": 0,
+    "react/prefer-stateless-function": 0,
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
   },
   "plugins": ["react", "import", "jsx-a11y"],

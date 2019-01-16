@@ -1,8 +1,25 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import {
   CenterDiv,
-  Button
+  Button,
 } from '../../CommonStyle';
+
+import { 
+  Hr
+} from '../../CommonStyle/elements/Hr';
+
+const lineSpec = css`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 3.5rem;
+    height: 0.4rem;
+    background-color: #fff;
+    display: inline-block;
+    transition: all 0.5s ease;
+`;
+
+
 
 export const Container = styled.div`
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
@@ -26,7 +43,6 @@ export const LoginCard = styled.div`
   border-radius: 10px;
   opacity: 1;
   box-shadow: 10px 10px 0.9;
-
   @media (max-width: 768px) {
     height: 60%;
     max-height: 400px;
@@ -36,9 +52,9 @@ export const LoginCard = styled.div`
 
   @media (max-width: 480px) {
     height: 50%;
-    max-height: 250px;
+    max-height: 25rem;
     width: 75%;
-    max-width: 300px;
+    max-width: 30rem;
   }
 `;
 
@@ -105,7 +121,7 @@ export const LoginLabel = styled.label`
 
 export const ButtonArea = styled.div`
   max-width: 100%;
-  height: 25%;
+  height: 10%;
   /* background-color: #ddd; */
   display: flex;
   align-items: center;
@@ -118,6 +134,7 @@ export const CustomButtom = styled(Button)`
   opacity: 0.6;
   font-size: 1.5rem;
   position: relative;
+  border: 2px solid #95a5a6;
   color: #fff;
   border-radius: 1rem;
   margin-left: ${props => props.show ? '1.5rem' : '0'};
@@ -135,7 +152,7 @@ export const CustomButtom = styled(Button)`
     display: block;
     z-index: -1;
     transition: all .7s ease;
-    border-radius: 1rem;
+    border-radius: 0.8rem;
   }
 
   &:hover::before {
@@ -145,4 +162,69 @@ export const CustomButtom = styled(Button)`
     opacity: 0.6;
     background-color: ${props => props.show ? 'pink' : 'lightgreen'}
   } 
+`;
+
+export const SigunupButton = styled.div`
+  position: absolute;
+  width: 5rem;
+  height: 5rem;
+  top: 20%;
+  right: -3rem;
+  background-color: #8e44ad;
+  border-radius: 2.5rem;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  &:hover {
+    transform: scale(1.2);
+    & > span:nth-of-type(1) {
+      background-color: #000;
+      transform: translate(-17px, -2px) rotate(45deg);
+    }
+
+    & > span:nth-of-type(2) {
+      background-color: #000;
+      transform: translate(-17px, -2px) rotate(-45deg);
+    }
+
+  }
+
+  & > span:nth-of-type(1) {
+    ${lineSpec}
+    transform: translate(-50%, -50%);
+  }
+
+  & > span:nth-of-type(2) {
+    ${lineSpec}
+    transform:  translate(-50%, -50%) rotate(90deg);
+  }
+
+`;
+
+export const CommonHr = styled(Hr)`
+  background-color: #2d3436;
+  width: 99%;
+  height: 0.1rem;
+  margin-top: 2rem;
+`;
+
+export const SocialArea = styled.div`
+  width: 100%;
+  height: 40%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  margin-top: 4rem;
+
+  & > span {
+    cursor: pointer;
+    display: inline-block;
+    width: 7rem;
+    font-size: 4rem;
+    &:nth-of-type(1) > i {
+      color: rgb(59, 89, 152);
+    }
+    &:nth-of-type(2) > i {
+      color: rgb(219, 50, 54);
+    }
+  }
 `;

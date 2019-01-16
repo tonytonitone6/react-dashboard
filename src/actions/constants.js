@@ -1,3 +1,4 @@
 export default {
-  USER_SIGNIN: "USER_SIGNIN"
+  USER_SIGNIN: 'USER_SIGNIN',
+  USER_SIGNUP: 'USER_SIGNUP'
 };

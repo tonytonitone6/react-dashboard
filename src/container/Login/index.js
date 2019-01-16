@@ -4,8 +4,10 @@ import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import { Field, reduxForm } from 'redux-form';
 import { withRouter } from 'react-router-dom';
+
 import actions from '../../actions';
-import { 
+import {
+  CommonHr,
   Container, 
   LoginCard, 
   InputSection,
@@ -14,7 +16,9 @@ import {
   CenterArea,
   LoginLabel,
   ButtonArea,
-  CustomButtom
+  CustomButtom,
+  SigunupButton,
+  SocialArea
 } from "./styles";
 
 
@@ -50,11 +54,13 @@ class Login {
 
 
   render() {
+    const { handleSubmit } = this.props;
+
     return (
       <Fragment>
         <Container>
           <LoginCard>
-            <form onSubmit={this.onSubmit}>
+            <form onSubmit={handleSubmit(this.onSubmit)}>
               <InputSection>
                 <InputArea>
                   <Field 
@@ -72,21 +78,30 @@ class Login {
                     component={this.onRenderField}
                   />
                 </InputArea>
-                <ButtonArea>
-                  <CustomButtom>
-                    <FormattedMessage 
-                      id="test"
-                      defaultMessage="取消"
-                    />
-                  </CustomButtom>
-                  <CustomButtom show>
-                    <FormattedMessage 
-                      id="test"
-                      defaultMessage="送出"
-                    />
-                  </CustomButtom>
-                </ButtonArea>
               </InputSection>
+              <ButtonArea>
+                <CustomButtom>
+                  <FormattedMessage 
+                    id="test"
+                    defaultMessage="取消"
+                  />
+                </CustomButtom>
+                <CustomButtom show>
+                  <FormattedMessage 
+                    id="test"
+                    defaultMessage="送出"
+                  />
+                </CustomButtom>
+              </ButtonArea>
+              <SigunupButton>
+                <span></span>
+                <span></span>
+              </SigunupButton>
+              <CommonHr />
+              <SocialArea>
+                <span><i className="fab fa-facebook-square"></i></span>
+                <span><i className="fab fa-google"></i></span>
+              </SocialArea>
             </form>
           </LoginCard>
         </Container>
