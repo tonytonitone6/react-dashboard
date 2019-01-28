@@ -1,5 +1,15 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
+
+const fade = keyframes`
+  from {
+    background-color: inherit;
+  }
+
+  to {
+    background-color: rgba(0,0,0,0.5);
+  
+`;
 
 export const FullShadow = styled.div`
   position: fixed;
@@ -10,7 +20,7 @@ export const FullShadow = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0,0,0,0.3);
+  animation: ${fade} 1.5s linear forwards;
 `;
 
 export const SignupArea = styled.div`
@@ -18,12 +28,18 @@ export const SignupArea = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 60rem;
-  height: 50rem;
+  width: 50rem;
+  height: 30rem;
   border-radius: 5%;
   background-color: #fff;
 `;
 
-export const ModalContainer = styled.div`
-  position: relative;
-`;
+export const InputArea = styled.div`
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+
+    padding-top: 3rem;
+`

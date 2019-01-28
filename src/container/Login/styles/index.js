@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import {
   CenterDiv,
-  Button,
+  Button
 } from '../../CommonStyle';
 
 import { 
@@ -231,4 +231,34 @@ export const SocialArea = styled.div`
       color: rgb(219, 50, 54);
     }
   }
+`;
+
+export const ModalInputArea = styled.div`
+  width: 100%;
+  height: 5rem;
+`;
+
+export const CustomInputField = styled.input`
+  display: inline-block;
+  width: 60%;
+  height: 3rem;
+  border-radius: 0.4rem;
+  border: 1px solid #d9d9d9;
+  cursor: pointer;
+  transition: border 0.5s ease;
+  background-color: #fff;
+  font-size: 1.4rem;
+  padding: .1rem 1rem;
+  /* text-transform: uppercase; */
+  &:focus {
+    border: 1px solid #1890ff;
+  }
+`
+export const CustomModalLabel = styled.label`
+  display: inline-block;
+  width: 6.5rem;
+  height: 2rem;
+  font-size: 1.4rem;
+  margin-left: 2rem;
+  text-align: left;
 `;

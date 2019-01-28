@@ -18,7 +18,10 @@ import {
   ButtonArea,
   CustomButtom,
   SigunupButton,
-  SocialArea
+  SocialArea,
+  CustomInputField,
+  CustomModalLabel,
+  ModalInputArea
 } from "./styles";
 
 
@@ -38,17 +41,6 @@ class Login {
 
   }
 
-  // onCloseShadow = () => {
-  //   this.setState({
-  //     showModal: false
-  //   });
-  // }
-
-  onShowModal = () => {
-    this.setState({
-      showModal: true
-    });
-  }
 
   onToggleModal = () => {
     const { showModal } = this.state;
@@ -66,9 +58,10 @@ class Login {
     } = field;
 
     return (
-      <div>
-        
-      </div>
+      <ModalInputArea>
+        <CustomModalLabel>{label}:</CustomModalLabel>
+        <CustomInputField {...input} type={type} placeholder={placeholder} autoComplete="off" />
+      </ModalInputArea>
     )
   }
 
@@ -144,7 +137,20 @@ class Login {
         </Container>
         { showModal ? (
           <Modal onToggleModal={this.onToggleModal} showModal={showModal}>
-            {/* <Field  /> */}
+            <Field 
+              label="email" 
+              name="email" 
+              type="text" 
+              placeholder="please enter your email" 
+              component={this.onRenderModalField}
+            />
+            <Field 
+              label="password" 
+              name="password" 
+              type="password" 
+              placeholder="please enter your password" 
+              component={this.onRenderModalField}
+            />
           </Modal>
         ) : null }
       </Fragment>

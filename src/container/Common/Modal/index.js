@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import {
   FullShadow,
   SignupArea,
+  InputArea
 } from './styles';
 
 const modalRoot = document.getElementById('modal-root');
@@ -28,6 +29,7 @@ class Modal extends Component {
   render() {
     const {
       onToggleModal,
+      children
     } = this.props;
 
     return ReactDOM.createPortal(
@@ -36,7 +38,9 @@ class Modal extends Component {
           onClick={this.isControlled('showModal') ? onToggleModal : ''} 
         />
         <SignupArea>
-
+          <InputArea>
+            {children}
+          </InputArea>
         </SignupArea>
       </Fragment>
     , modalRoot);
