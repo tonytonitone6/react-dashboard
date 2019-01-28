@@ -220,6 +220,7 @@ export const SocialArea = styled.div`
     display: inline-block;
     width: 7rem;
     font-size: 4rem;
+    
     &:nth-of-type(1) > i {
       color: rgb(59, 89, 152);
     }

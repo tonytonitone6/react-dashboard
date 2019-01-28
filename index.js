@@ -8,6 +8,10 @@ import { IntlProvider} from 'react-intl';
 import Loadable from "react-loadable";
 import store from './src/store';
 
+if (process.env.NODE_ENV !== 'production') {
+  const { whyDidYouUpdate} = require('why-did-you-update');
+  whyDidYouUpdate(React);
+}
 
 
 
