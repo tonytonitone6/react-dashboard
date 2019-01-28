@@ -9,7 +9,7 @@ import Loadable from "react-loadable";
 import store from './src/store';
 
 if (process.env.NODE_ENV !== 'production') {
-  const { whyDidYouUpdate} = require('why-did-you-update');
+  const { whyDidYouUpdate } = require('why-did-you-update');
   whyDidYouUpdate(React);
 }
 
@@ -17,14 +17,14 @@ if (process.env.NODE_ENV !== 'production') {
 
 const GlobalStyle = createGlobalStyle`
   * {
-    height: 100%;
-    width: 100%;
     :focus {
       outline: none;
     }
   }
 
-  html, body {
+  html, body, #root {
+    height: 100%;
+    width: 100%;
     padding: 0;
     margin: 0;
     box-sizing: border-box;

@@ -27,6 +27,7 @@ export const Container = styled.div`
   background-size: cover;
   background-attachment: fixed;
   height: 100%;
+  width: 100%;
   position: relative;
 `;
 
@@ -43,6 +44,7 @@ export const LoginCard = styled.div`
   border-radius: 10px;
   opacity: 1;
   box-shadow: 10px 10px 0.9;
+  padding-top: 2rem;
   @media (max-width: 768px) {
     height: 60%;
     max-height: 400px;
@@ -87,12 +89,12 @@ export const InputField = styled.input`
   width: 100%;
   max-width: 300px;
   height: 5%;
-  padding: 14px 20px;
+  padding: 0.8rem 1.5rem;
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.1);
   border: 2px solid rgba(255, 255, 255, 0);
   transition: all 0.5s ease-in-out;
-  margin: 10px 0;
+  margin: 2rem 0;
   color: #fff;
   font-size: 1.5rem;
   /* color: hsla(170, 85%, 95%, 0.21); */
@@ -126,10 +128,11 @@ export const ButtonArea = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 2rem;
 `;
 
 export const CustomButtom = styled(Button)`
-  height: 80%;
+  height: 3.5rem;
   background-color: inherit;
   opacity: 0.6;
   font-size: 1.5rem;

@@ -5,9 +5,9 @@ import { FormattedMessage } from 'react-intl';
 import { Field, reduxForm } from 'redux-form';
 import { withRouter } from 'react-router-dom';
 
+import Modal from '../Common/Modal';
 import actions from '../../actions';
 import {
-  CommonHr,
   Container, 
   LoginCard, 
   InputSection,
@@ -26,12 +26,50 @@ import {
 @component
 class Login {
 
-  componentDidMount = () => {
+  state = {
+    showModal: false
+  }
+
+  componentDidMount() {
 
   }
 
   onSubmit = () => {
 
+  }
+
+  // onCloseShadow = () => {
+  //   this.setState({
+  //     showModal: false
+  //   });
+  // }
+
+  onShowModal = () => {
+    this.setState({
+      showModal: true
+    });
+  }
+
+  onToggleModal = () => {
+    const { showModal } = this.state;
+    this.setState({
+      showModal: !showModal
+    })
+  }
+
+  onRenderModalField = (field) => {
+    const {
+      type,
+      label,
+      placeholder,
+      input
+    } = field;
+
+    return (
+      <div>
+        
+      </div>
+    )
   }
 
   onRenderField = (field) => {
@@ -45,7 +83,7 @@ class Login {
     return (
       <div>
         <CenterArea>
-          <InputField {...input } type={type} placeholder={placeholder} autoComplete="off" />
+          <InputField key={label} {...input } type={type} placeholder={placeholder} autoComplete="off"/>
           <LoginLabel>{label}</LoginLabel>
         </CenterArea>
       </div>
@@ -55,7 +93,7 @@ class Login {
 
   render() {
     const { handleSubmit } = this.props;
-
+    const { showModal } = this.state;
     return (
       <Fragment>
         <Container>
@@ -93,11 +131,10 @@ class Login {
                   />
                 </CustomButtom>
               </ButtonArea>
-              <SigunupButton>
+              <SigunupButton onClick={this.onToggleModal}>
                 <span></span>
                 <span></span>
               </SigunupButton>
-              <CommonHr />
               <SocialArea>
                 <span><i className="fab fa-facebook-square"></i></span>
                 <span><i className="fab fa-google"></i></span>
@@ -105,6 +142,11 @@ class Login {
             </form>
           </LoginCard>
         </Container>
+        { showModal ? (
+          <Modal onToggleModal={this.onToggleModal} showModal={showModal}>
+            {/* <Field  /> */}
+          </Modal>
+        ) : null }
       </Fragment>
     );
   }
