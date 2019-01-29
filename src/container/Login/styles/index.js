@@ -236,6 +236,7 @@ export const SocialArea = styled.div`
 export const ModalInputArea = styled.div`
   width: 100%;
   height: 5rem;
+  margin-top: 1rem;
 `;
 
 export const CustomInputField = styled.input`
@@ -249,7 +250,6 @@ export const CustomInputField = styled.input`
   background-color: #fff;
   font-size: 1.4rem;
   padding: .1rem 1rem;
-  /* text-transform: uppercase; */
   &:focus {
     border: 1px solid #1890ff;
   }
@@ -261,4 +261,13 @@ export const CustomModalLabel = styled.label`
   font-size: 1.4rem;
   margin-left: 2rem;
   text-align: left;
+`;
+
+export const ModalButtonArea = styled.div`
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+  padding-right: 1rem;
 `;

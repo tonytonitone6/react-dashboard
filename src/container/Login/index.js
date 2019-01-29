@@ -1,9 +1,9 @@
-import React, { Fragment } from "react";
-import { component } from "react-decoration";
+import React, { Fragment, PureComponent } from "react";
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import { Field, reduxForm } from 'redux-form';
 import { withRouter } from 'react-router-dom';
+import { Map } from 'immutable';
 
 import Modal from '../Common/Modal';
 import actions from '../../actions';
@@ -21,16 +21,18 @@ import {
   SocialArea,
   CustomInputField,
   CustomModalLabel,
-  ModalInputArea
+  ModalInputArea,
+  ModalButtonArea
 } from "./styles";
 
+import elements from '../CommonStyle/elements';
 
 
-@component
-class Login {
+class Login extends PureComponent {
 
   state = {
-    showModal: false
+    showModal: false,
+    userInfo: Map({})
   }
 
   componentDidMount() {
@@ -39,6 +41,10 @@ class Login {
 
   onSubmit = () => {
 
+  }
+
+  onSignup = () => {
+    // const 
   }
 
 
@@ -86,7 +92,7 @@ class Login {
 
   render() {
     const { handleSubmit } = this.props;
-    const { showModal } = this.state;
+    const { showModal, userInfo } = this.state;
     return (
       <Fragment>
         <Container>
@@ -137,20 +143,40 @@ class Login {
         </Container>
         { showModal ? (
           <Modal onToggleModal={this.onToggleModal} showModal={showModal}>
+            <Field
+              label="name" 
+              name="name"
+              type="text"
+              placeholder="Please enter your name" 
+              component={this.onRenderModalField}
+              onChange={(e) => this.setState({userInfo: {...userInfo, name: e.target.value}})}
+            />
             <Field 
               label="email" 
-              name="email" 
+              name="signupEmail" 
               type="text" 
-              placeholder="please enter your email" 
+              placeholder="Please enter your email" 
               component={this.onRenderModalField}
+              onChange={(e) => this.setState({userInfo: {...userInfo, email: e.target.value}})}
             />
             <Field 
               label="password" 
-              name="password" 
+              name="signupPassword" 
               type="password" 
-              placeholder="please enter your password" 
+              placeholder="Please enter your password" 
               component={this.onRenderModalField}
+              onChange={(e) => this.setState({userInfo: {...userInfo, password: e.target.value}}, () => console.log(this.state))}
             />
+            <ModalButtonArea>
+              <elements.CommonButton 
+                color="#48dbfb" 
+                margin="1rem"
+                opacity=".3"
+                onClick={this.onSignup}
+              >
+                送出
+              </elements.CommonButton>
+            </ModalButtonArea>
           </Modal>
         ) : null }
       </Fragment>
