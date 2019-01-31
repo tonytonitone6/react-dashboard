@@ -7,7 +7,7 @@ const webpackMerge = require("webpack-merge");
 
 const modeConfig = env => require(`./webpack.utils/webpack.${env}`)(env);
 
-module.exports = ({ mode }) =>
+module.exports = ({ mode, API_URI }) =>
   webpackMerge(
     {
       entry: "./index.js",
@@ -42,6 +42,10 @@ module.exports = ({ mode }) =>
           template: "./index.html",
           favicon: "./favicon.ico"
         }),
+        new webpack.DefinePlugin({
+          'process.env': {
+            API_URI: JSON.stringify(API_URI)
+        }}),
         new webpack.ProgressPlugin()
       ]
     },

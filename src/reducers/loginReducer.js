@@ -6,7 +6,6 @@ import types from '../actions/constants';
 const initialSate = Map({
   token: '',
   loading: false,
-  authentication: false,
   success: false
 });
 

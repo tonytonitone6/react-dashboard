@@ -1,4 +1,4 @@
-import puppeteer from 'pupeteer';
+import puppeteer from 'puppeteer';
 
 test('test', async () => {
   const browser = await puppeteer.launch({
@@ -6,5 +6,5 @@ test('test', async () => {
   });
 
   const page = await browser.newPage();
-  await page.goto('localhost:8080');
+  await page.goto('localhost:8081');
 })

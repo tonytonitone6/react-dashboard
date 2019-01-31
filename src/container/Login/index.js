@@ -110,6 +110,7 @@ class Login extends PureComponent {
   render() {
     const { handleSubmit } = this.props;
     const { showModal } = this.state;
+    
     return (
       <Fragment>
         <Container>
@@ -161,7 +162,7 @@ class Login extends PureComponent {
         { showModal ? (
           <Modal onToggleModal={this.onToggleModal} showModal={showModal}>
             <Field
-              label="name" 
+              label="Name" 
               name="name"
               type="text"
               placeholder="Please enter your name" 
@@ -169,7 +170,7 @@ class Login extends PureComponent {
               onChange={(e) => this.onSetUserInfo('name', e.target.value)}
             />
             <Field 
-              label="email" 
+              label="Email" 
               name="signupEmail" 
               type="text" 
               placeholder="Please enter your email" 
@@ -177,7 +178,7 @@ class Login extends PureComponent {
               onChange={(e) => this.onSetUserInfo('email', e.target.value)}
             />
             <Field 
-              label="password" 
+              label="Password" 
               name="signupPassword" 
               type="password" 
               placeholder="Please enter your password" 
