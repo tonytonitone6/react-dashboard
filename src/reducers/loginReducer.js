@@ -1,9 +1,9 @@
 import { handleActions } from 'redux-actions';
+import { Map } from 'immutable';
 import types from '../actions/constants';
-import { Map, fromJS } from 'immutable';
 
 
-const initialSate = fromJS({
+const initialSate = Map({
   token: '',
   loading: false,
   authentication: false,
@@ -12,5 +12,8 @@ const initialSate = fromJS({
 
 
 export default handleActions({
+  [types.USER_SIGNUP_SUCCESS]: (state, action) => {
 
+  },
+  initialSate
 })

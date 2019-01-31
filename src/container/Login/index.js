@@ -32,11 +32,11 @@ class Login extends PureComponent {
 
   state = {
     showModal: false,
-    userInfo: Map({})
-  }
-
-  componentDidMount() {
-
+    userInfo: Map({
+      email: '',
+      password: '',
+      name: ''
+    })
   }
 
   onSubmit = () => {
@@ -44,9 +44,26 @@ class Login extends PureComponent {
   }
 
   onSignup = () => {
-    // const 
+    const {
+      userInfo
+    } = this.state;
+    const {
+      userSignup
+    } = this.props;
+
+    if (userSignup && typeof userSignup === 'function') {
+      userSignup(userInfo);
+    }
+
   }
 
+  onSetUserInfo = (type, value) => {
+    const { userInfo } = this.state;
+    const newData = userInfo.set(type, value);
+    this.setState({
+      userInfo: newData
+    });
+  }
 
   onToggleModal = () => {
     const { showModal } = this.state;
@@ -92,7 +109,7 @@ class Login extends PureComponent {
 
   render() {
     const { handleSubmit } = this.props;
-    const { showModal, userInfo } = this.state;
+    const { showModal } = this.state;
     return (
       <Fragment>
         <Container>
@@ -149,7 +166,7 @@ class Login extends PureComponent {
               type="text"
               placeholder="Please enter your name" 
               component={this.onRenderModalField}
-              onChange={(e) => this.setState({userInfo: {...userInfo, name: e.target.value}})}
+              onChange={(e) => this.onSetUserInfo('name', e.target.value)}
             />
             <Field 
               label="email" 
@@ -157,7 +174,7 @@ class Login extends PureComponent {
               type="text" 
               placeholder="Please enter your email" 
               component={this.onRenderModalField}
-              onChange={(e) => this.setState({userInfo: {...userInfo, email: e.target.value}})}
+              onChange={(e) => this.onSetUserInfo('email', e.target.value)}
             />
             <Field 
               label="password" 
@@ -165,7 +182,7 @@ class Login extends PureComponent {
               type="password" 
               placeholder="Please enter your password" 
               component={this.onRenderModalField}
-              onChange={(e) => this.setState({userInfo: {...userInfo, password: e.target.value}}, () => console.log(this.state))}
+              onChange={(e) => this.onSetUserInfo('password', e.target.value)}
             />
             <ModalButtonArea>
               <elements.CommonButton 
