@@ -1,11 +1,10 @@
-import styled, { keyframes } from 'styled-components';
-
+import styled, { keyframes } from "styled-components";
 
 const fade = keyframes`
   from {
     background-color: inherit;
   }
-
+  
   to {
     background-color: rgba(0,0,0,0.5);
   
@@ -35,11 +34,22 @@ export const SignupArea = styled.div`
 `;
 
 export const InputArea = styled.div`
-    width: 100%;
-    height: 80%;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: flex-start;
+  position: relative;
+  width: 100%;
+  height: 80%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  padding-top: 3rem;
+`;
 
-    padding-top: 3rem;
-`
+export const ErrorArea = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 2rem;
+  color: red;
+  top: 85%;
+  transform: translateY(-85%);
+  display: flex;
+  justify-content: center;
+`;

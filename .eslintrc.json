@@ -21,6 +21,7 @@
     "import/no-extraneous-dependencies": 0,
     "react/destructuring-assignment": 0,
     "import/no-dynamic-require": 0,
+    "getter-return": 0,
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
   },
   "plugins": ["react", "import", "jsx-a11y"],

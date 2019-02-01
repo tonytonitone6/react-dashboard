@@ -1,25 +1,18 @@
 import styled, { css } from "styled-components";
-import {
-  CenterDiv,
-  Button
-} from '../../CommonStyle';
+import { CenterDiv, Button } from "../../CommonStyle";
 
-import { 
-  Hr
-} from '../../CommonStyle/elements/Hr';
+import { Hr } from "../../CommonStyle/elements/Hr";
 
 const lineSpec = css`
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 3.5rem;
-    height: 0.4rem;
-    background-color: #fff;
-    display: inline-block;
-    transition: all 0.5s ease;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 3.5rem;
+  height: 0.4rem;
+  background-color: #fff;
+  display: inline-block;
+  transition: all 0.5s ease;
 `;
-
-
 
 export const Container = styled.div`
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
@@ -140,31 +133,31 @@ export const CustomButtom = styled(Button)`
   border: 2px solid #95a5a6;
   color: #fff;
   border-radius: 1rem;
-  margin-left: ${props => props.show ? '1.5rem' : '0'};
+  margin-left: ${props => (props.show ? "1.5rem" : "0")};
   &:hover {
     color: #000;
   }
 
   &::before {
     position: absolute;
-    top:0;
+    top: 0;
     right: 0;
-    content: '';
+    content: "";
     width: 0px;
     height: 100%;
     display: block;
     z-index: -1;
-    transition: all .7s ease;
+    transition: all 0.7s ease;
     border-radius: 0.8rem;
   }
 
   &:hover::before {
     left: 0;
-	  right: 0;
-	  width: 100%;
+    right: 0;
+    width: 100%;
     opacity: 0.6;
-    background-color: ${props => props.show ? 'pink' : 'lightgreen'}
-  } 
+    background-color: ${props => (props.show ? "pink" : "lightgreen")};
+  }
 `;
 
 export const SigunupButton = styled.div`
@@ -188,7 +181,6 @@ export const SigunupButton = styled.div`
       background-color: #000;
       transform: translate(-17px, -2px) rotate(-45deg);
     }
-
   }
 
   & > span:nth-of-type(1) {
@@ -200,7 +192,6 @@ export const SigunupButton = styled.div`
     ${lineSpec}
     transform:  translate(-50%, -50%) rotate(90deg);
   }
-
 `;
 
 export const CommonHr = styled(Hr)`
@@ -223,7 +214,7 @@ export const SocialArea = styled.div`
     display: inline-block;
     width: 7rem;
     font-size: 4rem;
-    
+
     &:nth-of-type(1) > i {
       color: rgb(59, 89, 152);
     }
@@ -249,11 +240,11 @@ export const CustomInputField = styled.input`
   transition: border 0.5s ease;
   background-color: #fff;
   font-size: 1.4rem;
-  padding: .1rem 1rem;
+  padding: 0.1rem 1rem;
   &:focus {
     border: 1px solid #1890ff;
   }
-`
+`;
 export const CustomModalLabel = styled.label`
   display: inline-block;
   width: 6.5rem;

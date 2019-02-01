@@ -1,9 +1,7 @@
-import { CommonButton } from './Button';
-import { CustomInputField } from './Input';
-
-
+import { CommonButton } from "./Button";
+import { CustomInputField } from "./Input";
 
 export default {
   CommonButton,
   CustomInputField
-}
+};

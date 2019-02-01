@@ -43,9 +43,10 @@ module.exports = ({ mode, API_URI }) =>
           favicon: "./favicon.ico"
         }),
         new webpack.DefinePlugin({
-          'process.env': {
+          "process.env": {
             API_URI: JSON.stringify(API_URI)
-        }}),
+          }
+        }),
         new webpack.ProgressPlugin()
       ]
     },

@@ -1,19 +1,17 @@
 import "./node_modules/normalize.css/normalize.css";
 import React from "react";
 import ReactDOM from "react-dom";
-import { Provider } from 'react-redux';
+import { Provider } from "react-redux";
 import { createGlobalStyle } from "styled-components";
 import { Switch, BrowserRouter as Router } from "react-router-dom";
-import { IntlProvider} from 'react-intl';
+import { IntlProvider } from "react-intl";
 import Loadable from "react-loadable";
-import store from './src/store';
+import store from "./src/store";
 
 // if (process.env.NODE_ENV !== 'production') {
 //   const { whyDidYouUpdate } = require('why-did-you-update');
 //   whyDidYouUpdate(React);
 // }
-
-
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -31,7 +29,6 @@ const GlobalStyle = createGlobalStyle`
     font-size: 10px;
   }
 `;
-
 
 const LoadableApp = Loadable({
   loader: () => import("./src/container/App"),
@@ -60,7 +57,6 @@ ReactDOM.render(
         </React.Fragment>
       </Router>
     </IntlProvider>
-
   </Provider>,
   document.getElementById("root")
 );

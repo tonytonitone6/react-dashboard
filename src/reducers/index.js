@@ -1,9 +1,12 @@
 // import { combineReducers } from 'redux-immutable';
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
 import { reducer as formReducer } from "redux-form";
+import loginReducer from './loginReducer';
+import signupReducer from './signupReducer';
 
 const rootReducer = combineReducers({
-  login: () => ({}),
+  signup: signupReducer,
+  login: loginReducer,
   form: formReducer
 });
 

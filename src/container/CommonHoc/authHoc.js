@@ -2,19 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
+export default WrapperComponent =>
+  class authRoute extends Component {
+    componentDidMount() {}
 
-export default WrapperComponent => class authRoute extends Component {
-    
-  
-  componentDidMount() {
+    componentDidUpdate() {}
 
-  }
-
-  componentDidUpdate() {
-
-  }
-
-  render() {
-    return <WrapperComponent {...this.props} />
-  }
-}
+    render() {
+      return <WrapperComponent {...this.props} />;
+    }
+  };

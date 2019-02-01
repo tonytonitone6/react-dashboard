@@ -1,5 +1,5 @@
 import { all, takeEvery } from "redux-saga/effects";
-import * as account from './accounts';
+import * as account from "./accounts";
 import types from "../actions/constants";
 
 function* rootSagas() {

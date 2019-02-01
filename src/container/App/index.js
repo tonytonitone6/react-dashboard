@@ -1,6 +1,6 @@
 import React from "react";
 import { component } from "react-decoration";
-import authRoute from '../CommonHoc/authHoc';
+import authRoute from "../CommonHoc/authHoc";
 
 @authRoute
 @component
