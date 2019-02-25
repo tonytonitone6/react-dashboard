@@ -8,8 +8,12 @@ const initialState = fromJS({
   result: null
 });
 
-export default handleActions({
-  [types.USER_SIGNUP_SUCCESS]: (state, action) => state.set('isSuccess', action.isSuccess),
-  [types.USER_SIGNUP_FAILURE]: (state, action) => state.set('isSuccess', action.isSuccess).set('error', action.error)
-
-}, initialState);
+export default handleActions(
+  {
+    [types.USER_SIGNUP_SUCCESS]: (state, action) =>
+      state.set("isSuccess", action.isSuccess),
+    [types.USER_SIGNUP_FAILURE]: (state, action) =>
+      state.set("isSuccess", action.isSuccess).set("error", action.error)
+  },
+  initialState
+);

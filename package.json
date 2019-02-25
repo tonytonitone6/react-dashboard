@@ -16,6 +16,8 @@
   "author": "mao",
   "license": "ISC",
   "dependencies": {
+    "@types/react": "^16.8.3",
+    "@types/react-dom": "^16.8.1",
     "axios": "^0.18.0",
     "connect-history-api-fallback": "^1.6.0",
     "d3": "^5.7.0",
@@ -29,16 +31,15 @@
     "react-decoration": "^2.0.0",
     "react-dom": "^16.6.0",
     "react-intl": "^2.7.2",
-    "react-loadable": "^5.5.0",
     "react-redux": "^5.0.7",
-    "react-router-dom": "^4.3.1",
+    "react-router-dom": "^4.4.0-beta.6",
     "redux": "^4.0.1",
     "redux-actions": "^2.6.3",
     "redux-form": "^7.4.2",
-    "redux-immutable": "^4.0.0",
     "redux-saga": "^0.16.2",
     "reselect": "^4.0.0",
-    "styled-components": "^4.0.2"
+    "styled-components": "^4.0.2",
+    "typescript": "^3.3.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
@@ -73,7 +74,9 @@
     "node-sass": "^4.9.4",
     "puppeteer": "^1.11.0",
     "sass-loader": "^7.1.0",
+    "source-map-loader": "^0.2.4",
     "style-loader": "^0.23.1",
+    "ts-loader": "^5.3.3",
     "url-loader": "^1.1.2",
     "webpack": "^4.23.0",
     "webpack-cli": "^3.1.2",

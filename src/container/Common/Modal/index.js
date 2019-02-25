@@ -1,13 +1,12 @@
 import React, { Component, Fragment } from "react";
 import ReactDOM from "react-dom";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 import { FullShadow, SignupArea, InputArea, ErrorArea } from "./styles";
 
 const modalRoot = document.getElementById("modal-root");
 
 class Modal extends Component {
-
   el = document.createElement("div");
 
   componentDidMount() {
@@ -16,8 +15,8 @@ class Modal extends Component {
 
   componentDidUpdate() {
     const { signup, onToggleModal } = this.props;
-    (signup && signup.get('isSuccess')) ? onToggleModal() : '';
-  } 
+    signup && signup.get("isSuccess") ? onToggleModal() : "";
+  }
 
   componentWillUnmount() {
     modalRoot.removeChild(this.el);
@@ -29,10 +28,10 @@ class Modal extends Component {
 
   render() {
     const { onToggleModal, children, signup } = this.props;
-    let errorMsg = '';
-    
-    if (!signup.get('isSuccess')) {
-      errorMsg = signup.getIn(['error', 'message']);
+    let errorMsg = "";
+
+    if (!signup.get("isSuccess")) {
+      errorMsg = signup.getIn(["error", "message"]);
     }
 
     return ReactDOM.createPortal(
@@ -55,7 +54,10 @@ class Modal extends Component {
 }
 
 const mapStateToProps = ({ signup }) => ({
-    signup
-  })
+  signup
+});
 
-export default connect(mapStateToProps, null)(Modal)
+export default connect(
+  mapStateToProps,
+  null
+)(Modal);

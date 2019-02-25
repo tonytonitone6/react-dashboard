@@ -6,7 +6,7 @@ export const CenterDiv = styled.div`
 `;
 
 export const Button = styled.button`
-  width: 16rem;
+  width: 15rem;
   height: 100%;
   background-color: transparent;
   border: 2px solid #ffaf40;

@@ -1,12 +1,12 @@
 import React, { Fragment, PureComponent } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
 import { Field, reduxForm } from "redux-form/immutable";
 import { withRouter } from "react-router-dom";
 import { Map } from "immutable";
 
-import Modal from "../Common/Modal";
+import Modal from "../Common/Modal/index";
 import actions from "../../actions";
+import FacebookSDK from "../../utils/FacebookSDK";
 import {
   Container,
   LoginCard,
@@ -22,7 +22,8 @@ import {
   CustomInputField,
   CustomModalLabel,
   ModalInputArea,
-  ModalButtonArea
+  ModalButtonArea,
+  ErrorArea
 } from "./styles";
 
 import elements from "../CommonStyle/elements";
@@ -37,7 +38,21 @@ class Login extends PureComponent {
     })
   };
 
-  onSubmit = () => {};
+  componentDidMount() {
+    FacebookSDK.init();
+  }
+
+  onFacebooksignup = () => {
+    FacebookSDK.login();
+  };
+
+  onSubmit = value => {
+    const { reset, userSignin } = this.props;
+    if (userSignin && userSignin !== "undefined") {
+      userSignin({ ...value });
+    }
+    reset();
+  };
 
   onSignup = () => {
     const { userInfo } = this.state;
@@ -80,7 +95,13 @@ class Login extends PureComponent {
   };
 
   onRenderField = field => {
-    const { type, label, placeholder, input } = field;
+    const {
+      type,
+      label,
+      placeholder,
+      input,
+      meta: { touched, error }
+    } = field;
 
     return (
       <div>
@@ -93,6 +114,7 @@ class Login extends PureComponent {
             autoComplete="off"
           />
           <LoginLabel>{label}</LoginLabel>
+          <ErrorArea>{touched && <span>{error}</span>}</ErrorArea>
         </CenterArea>
       </div>
     );
@@ -126,11 +148,9 @@ class Login extends PureComponent {
                 </InputArea>
               </InputSection>
               <ButtonArea>
-                <CustomButtom>
-                  <FormattedMessage id="test" defaultMessage="取消" />
-                </CustomButtom>
-                <CustomButtom show>
-                  <FormattedMessage id="test" defaultMessage="送出" />
+                <CustomButtom>取消</CustomButtom>
+                <CustomButtom type="submit" show>
+                  送出
                 </CustomButtom>
               </ButtonArea>
               <SigunupButton onClick={this.onToggleModal}>
@@ -138,7 +158,7 @@ class Login extends PureComponent {
                 <span />
               </SigunupButton>
               <SocialArea>
-                <span>
+                <span onClick={this.onFacebooksignup}>
                   <i className="fab fa-facebook-square" />
                 </span>
                 <span>
@@ -191,13 +211,33 @@ class Login extends PureComponent {
   }
 }
 
-const validate = () => {
-  // const erros = {};
+const validate = values => {
+  const errors = {};
+  const emailRegexp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+  const passwordRegexp = /[A-Za-z0-9]/;
+  const formData = {
+    email: values.get("email"),
+    password: values.get("password")
+  };
+
+  if (!formData.email) {
+    errors.email = "Please enter your email";
+  } else if (!emailRegexp.test(formData.email)) {
+    errors.email = "Invalid email format";
+  }
+
+  if (!formData.password) {
+    errors.password = "Please enter your password";
+  } else if (!passwordRegexp.test(formData.passwoed)) {
+    errors.password = "Invalid password format";
+  }
+
+  return errors;
 };
 
-const mapStateToProps = ({signup}) => ({
-    signup
-  })
+const mapStateToProps = ({ signup }) => ({
+  signup
+});
 
 export default withRouter(
   connect(

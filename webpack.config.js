@@ -16,6 +16,9 @@ module.exports = ({ mode, API_URI }) =>
         publicPath: "/",
         filename: "[chunkhash].js"
       },
+      resolve: {
+        extensions: [".js", ".jsx", ".json", ".ts", ".tsx"]
+      },
       module: {
         rules: [
           {

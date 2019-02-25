@@ -56,6 +56,7 @@ export const LoginCard = styled.div`
 export const CenterArea = styled(CenterDiv)`
   height: 100%;
   display: flex;
+  flex-flow: column nowrap;
   align-items: center;
 `;
 
@@ -87,7 +88,7 @@ export const InputField = styled.input`
   background: rgba(255, 255, 255, 0.1);
   border: 2px solid rgba(255, 255, 255, 0);
   transition: all 0.5s ease-in-out;
-  margin: 2rem 0;
+  margin: 1.7rem 0;
   color: #fff;
   font-size: 1.5rem;
   /* color: hsla(170, 85%, 95%, 0.21); */
@@ -121,7 +122,7 @@ export const ButtonArea = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 2rem;
+  margin-top: 1rem;
 `;
 
 export const CustomButtom = styled(Button)`
@@ -261,4 +262,15 @@ export const ModalButtonArea = styled.div`
   justify-content: flex-end;
   margin-top: 1rem;
   padding-right: 1rem;
+`;
+
+export const ErrorArea = styled.div`
+  width: 100%;
+  height: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-top;
+  & > span {
+    color: red;
+  }
 `;

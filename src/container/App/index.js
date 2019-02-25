@@ -1,10 +1,8 @@
-import React from "react";
-import { component } from "react-decoration";
+import React, { Component } from "react";
 import authRoute from "../CommonHoc/authHoc";
 
 @authRoute
-@component
-class App {
+class App extends Component {
   render() {
     return <div>app</div>;
   }

@@ -1,11 +1,10 @@
 import "./node_modules/normalize.css/normalize.css";
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { createGlobalStyle } from "styled-components";
-import { Switch, BrowserRouter as Router } from "react-router-dom";
+import { Switch, BrowserRouter as Router, Route } from "react-router-dom";
 import { IntlProvider } from "react-intl";
-import Loadable from "react-loadable";
 import store from "./src/store";
 
 // if (process.env.NODE_ENV !== 'production') {
@@ -30,19 +29,8 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const LoadableApp = Loadable({
-  loader: () => import("./src/container/App"),
-  loading() {
-    return null;
-  }
-});
-
-const LoadableLogin = Loadable({
-  loader: () => import("./src/container/Login"),
-  loading() {
-    return null;
-  }
-});
+const LoadableApp = lazy(() => import("./src/container/App"));
+const LoadableLogin = lazy(() => import("./src/container/Login"));
 
 ReactDOM.render(
   <Provider store={store}>
@@ -50,10 +38,12 @@ ReactDOM.render(
       <Router>
         <React.Fragment>
           <GlobalStyle />
-          <Switch>
-            <LoadableLogin exact path="/login" />
-            <LoadableApp path="/" />
-          </Switch>
+          <Suspense fallback={<div />}>
+            <Switch>
+              <Route path="/login" component={LoadableLogin} />
+              <Route exact path="/" component={LoadableApp} />
+            </Switch>
+          </Suspense>
         </React.Fragment>
       </Router>
     </IntlProvider>
