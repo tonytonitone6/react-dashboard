@@ -46,10 +46,11 @@ class Login extends PureComponent {
     FacebookSDK.login();
   };
 
-  onSubmit = value => {
+  onSubmit = values => {
     const { reset, userSignin } = this.props;
     if (userSignin && userSignin !== "undefined") {
-      userSignin({ ...value });
+      console.log(values.get("email"));
+      userSignin(values);
     }
     reset();
   };
