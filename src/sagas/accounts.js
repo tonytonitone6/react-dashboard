@@ -4,9 +4,8 @@ import types from "../actions/constants";
 import * as Api from "./api";
 
 export function* userSignup(action) {
-  const userInfo = { ...action.payload };
+  const userInfo = action.payload;
   const authField = ["name", "email", "password"];
-
   const userData = {
     name: userInfo.get("name"),
     email: userInfo.get("email"),
@@ -29,17 +28,22 @@ export function* userSignup(action) {
 
 export function* userSignin(action) {
   const userLoginData = action.payload;
-
   const authData = {
     email: userLoginData.get("email"),
     password: userLoginData.get("password")
   };
 
-  if (
-    Object.prototype.hasOwnProperty.call(authData, "email") &&
-    Object.prototype.hasOwnProperty.call(authData, "password")
-  ) {
-    const result = yield call(Api.post.bind(this, "/v1/userSignin", authData));
+  try {
+    const { data: { error, isSuccess, result } } = yield call(Api.post.bind(this, "/v1/userSignin", authData));
+    if (isSuccess && result.token !== '') {
+      console.log('saga');
+      localStorage.setItem('authToken', result.token);
+      yield put({ type: types.USER_SIGNIN_SUCCESS, result: { isSuccess, error, token: result.token } });
+    } else {
+      throw data;
+    }
+  } catch (error) {
+    yield put({ type: types.USER_SIGNUP_FAILURE, result: error });
   }
 }
 

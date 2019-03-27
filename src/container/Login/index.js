@@ -42,6 +42,14 @@ class Login extends PureComponent {
     FacebookSDK.init();
   }
 
+  componentDidUpdate() {
+    const { signin } = this.props;
+
+    if (signin.get("isSuccess")) {
+      this.props.history.push('/');
+    } 
+  }
+
   onFacebooksignup = () => {
     FacebookSDK.login();
   };
@@ -49,7 +57,6 @@ class Login extends PureComponent {
   onSubmit = values => {
     const { reset, userSignin } = this.props;
     if (userSignin && userSignin !== "undefined") {
-      console.log(values.get("email"));
       userSignin(values);
     }
     reset();
@@ -61,6 +68,7 @@ class Login extends PureComponent {
 
     if (userSignup && typeof userSignup === "function") {
       userSignup(userInfo);
+      
     }
   };
 
@@ -122,7 +130,7 @@ class Login extends PureComponent {
   };
 
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, submitting } = this.props;
     const { showModal } = this.state;
 
     return (
@@ -150,7 +158,11 @@ class Login extends PureComponent {
               </InputSection>
               <ButtonArea>
                 <CustomButtom>取消</CustomButtom>
-                <CustomButtom type="submit" show>
+                <CustomButtom 
+                  type="submit" 
+                  show
+                  disabled={submitting}
+                >
                   送出
                 </CustomButtom>
               </ButtonArea>
@@ -236,8 +248,9 @@ const validate = values => {
   return errors;
 };
 
-const mapStateToProps = ({ signup }) => ({
-  signup
+const mapStateToProps = ({ signup, signin }) => ({
+  signup,
+  signin
 });
 
 export default withRouter(

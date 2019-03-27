@@ -7,7 +7,7 @@ module.exports = env => ({
     contentBase: join(__dirname, "dist"),
     historyApiFallback: true,
     proxy: {
-      "/v1": "http://[::1]:3001"
+      "/v1": "http://[::1]:5000"
     }
   }
 });

@@ -9,11 +9,20 @@ const initialState = fromJS({
 
 export default handleActions(
   {
-    [types.USER_SIGNIN_FAILURE]: (state, action) => {
-      const result = { ...action.result };
-      return state
+    [types.USER_SIGNIN_FAILURE]: (state, { result }) => {
+      const res = state
         .set("isSuccess", result.isSuccess)
         .set("error", result.error);
+
+      return res;
+    },
+    [types.USER_SIGNIN_SUCCESS]: (state, { result }) => {
+
+      const res = state
+        .set("isSuccess", result.isSuccess)
+        .set('error', result.error);
+
+      return res;
     }
   },
   initialState
