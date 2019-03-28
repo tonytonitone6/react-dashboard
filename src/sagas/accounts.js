@@ -1,5 +1,7 @@
 import { call, put } from "redux-saga/effects";
 import _ from "lodash";
+
+import ErrorHandle from '../common/errorHandle';
 import types from "../actions/constants";
 import * as Api from "./api";
 
@@ -11,7 +13,6 @@ export function* userSignup(action) {
     email: userInfo.get("email"),
     password: userInfo.get("password")
   };
-
   const res = _.map(authField, item => userData[item]);
 
   if (res.includes("")) {
@@ -36,23 +37,38 @@ export function* userSignin(action) {
   try {
     const { data: { error, isSuccess, result } } = yield call(Api.post.bind(this, "/v1/userSignin", authData));
     if (isSuccess && result.token !== '') {
-      console.log('saga');
       localStorage.setItem('authToken', result.token);
       yield put({ type: types.USER_SIGNIN_SUCCESS, result: { isSuccess, error, token: result.token } });
     } else {
-      throw data;
+      const errorMsg = {
+        error,
+        isSuccess,
+        result
+      };
+      throw new ErrorHandle(errorMsg);
     }
   } catch (error) {
-    yield put({ type: types.USER_SIGNUP_FAILURE, result: error });
+    yield put({ type: types.USER_SIGNIN_FAILURE, result: error.toMessage() });
   }
 }
 
 export function* userSigninStatus(action) {
-  if (!action.payload && action.payload === null) {
-    const auth = {
-      isSuccess: false,
-      error: "Token is null"
-    };
-    yield put({ type: types.USER_SIGNIN_FAILURE, result: auth });
+  console.log(action);
+  if (action.payload && action.payload !== null) {
+    // const auth = {
+    //   isSuccess: false,
+    //   error: "Token is null"
+    // };
+    // yield put({ type: types.USER_SIGNIN_FAILURE, result: auth });
+  try {
+    const { payload } = action;
+    if (payload) {
+      const res = yield call(Api.get.call(this, '/v1/userStatus'));
+      console.log(res);
+    }
+
+  } catch (error) {
+    console.log('error', error);
+  }
   }
 }

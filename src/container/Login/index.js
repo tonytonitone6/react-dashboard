@@ -44,7 +44,7 @@ class Login extends PureComponent {
 
   componentDidUpdate() {
     const { signin } = this.props;
-
+    
     if (signin.get("isSuccess")) {
       this.props.history.push('/');
     } 
@@ -68,7 +68,6 @@ class Login extends PureComponent {
 
     if (userSignup && typeof userSignup === "function") {
       userSignup(userInfo);
-      
     }
   };
 
