@@ -17,11 +17,9 @@ export default handleActions(
       return res;
     },
     [types.USER_SIGNIN_SUCCESS]: (state, { result }) => {
-
       const res = state
         .set("isSuccess", result.isSuccess)
-        .set('error', result.error);
-
+        .set("error", result.error);
       return res;
     }
   },

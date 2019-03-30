@@ -5,9 +5,11 @@ import types from "../actions/constants";
 function* rootSagas() {
   yield all([
     takeEvery(types.USER_SIGNIN, account.userSignin),
-    takeEvery(types.USER_STATUS, account.userSigninStatus),
     takeEvery(types.USER_SIGNUP, account.userSignup)
   ]);
+  yield all([
+    takeEvery(types.USER_STATUS, account.userSigninStatus),
+  ])
 }
 
 export default rootSagas;

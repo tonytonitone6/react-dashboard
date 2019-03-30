@@ -1,3 +1,4 @@
+/* eslint-disable no-else-return */
 import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
@@ -16,17 +17,23 @@ export default WrapperComponent =>
   class authHoc extends PureComponent {
     componentDidMount() {
       const { userStatus } = this.props;
-      const token = localStorage.getItem("authToken");
-      userStatus(token);
+      userStatus();
     }
 
     componentDidUpdate() {
       const { status, history } = this.props;
       const statusResult = status.get("isSuccess");
-      statusResult === false ? history.push("login") : undefined;
+      if (statusResult !== true) {
+        history.push('login');
+      }
     }
 
     render() {
-      return <WrapperComponent {...this.props} />;
+      const { status } = this.props;
+      if (status.get("isSuccess")) {
+        return <WrapperComponent {...this.props} />;
+      } else {
+        return <div></div>
+      }
     }
   };

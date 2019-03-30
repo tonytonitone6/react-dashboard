@@ -1,7 +1,7 @@
 import { call, put } from "redux-saga/effects";
 import _ from "lodash";
 
-import ErrorHandle from '../common/errorHandle';
+import ErrorHandle from '../utils/ErrorHandle';
 import types from "../actions/constants";
 import * as Api from "./api";
 
@@ -33,12 +33,11 @@ export function* userSignin(action) {
     email: userLoginData.get("email"),
     password: userLoginData.get("password")
   };
-
   try {
     const { data: { error, isSuccess, result } } = yield call(Api.post.bind(this, "/v1/userSignin", authData));
-    if (isSuccess && result.token !== '') {
-      localStorage.setItem('authToken', result.token);
-      yield put({ type: types.USER_SIGNIN_SUCCESS, result: { isSuccess, error, token: result.token } });
+    if (isSuccess && result !== '') {
+      localStorage.setItem('authToken', result);
+      yield put({ type: types.USER_SIGNIN_SUCCESS, result: { isSuccess, token: result } });
     } else {
       const errorMsg = {
         error,
@@ -52,23 +51,23 @@ export function* userSignin(action) {
   }
 }
 
-export function* userSigninStatus(action) {
-  console.log(action);
-  if (action.payload && action.payload !== null) {
-    // const auth = {
-    //   isSuccess: false,
-    //   error: "Token is null"
-    // };
-    // yield put({ type: types.USER_SIGNIN_FAILURE, result: auth });
+export function* userSigninStatus() {
+  const token = localStorage.getItem('authToken');
   try {
-    const { payload } = action;
-    if (payload) {
-      const res = yield call(Api.get.call(this, '/v1/userStatus'));
-      console.log(res);
+    if (!token && token === 'undefined') {
+      const params = {
+        message: 'token isn\'t exist'
+      };
+      throw new ErrorHandle(params);
+    } else {
+      const { data: { isSuccess, error } } = yield call(Api.get.bind(this, '/v1/userStatus'));
+      if (!isSuccess && error.message !== '') {
+        throw new ErrorHandle(error);
+      } else {
+        yield put({ type: types.USER_SIGNIN_SUCCESS, result: { isSuccess, error: {} } });
+      }
     }
-
   } catch (error) {
-    console.log('error', error);
-  }
+    yield put({ type: types.USER_SIGNIN_FAILURE, result: error.toMessage() });
   }
 }
