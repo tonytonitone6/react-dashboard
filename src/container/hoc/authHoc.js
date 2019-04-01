@@ -3,6 +3,8 @@ import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import actions from "../../actions";
+import { Container } from '../../styles';
+import Animation from '../../styles/animations';
 
 const mapStateToProps = state => ({
   status: state.signin
@@ -33,7 +35,13 @@ export default WrapperComponent =>
       if (status.get("isSuccess")) {
         return <WrapperComponent {...this.props} />;
       } else {
-        return <div></div>
+        return (
+          <Container>
+            <Animation.loading.CircleContainer>
+              <Animation.loading.SmallCycle />
+            </Animation.loading.CircleContainer>
+          </Container>
+        )
       }
     }
   };

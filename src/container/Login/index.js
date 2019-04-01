@@ -4,7 +4,7 @@ import { Field, reduxForm } from "redux-form/immutable";
 import { withRouter } from "react-router-dom";
 import { Map } from "immutable";
 
-import Modal from "../Common/Modal/index";
+import Modal from "../../common/Modal";
 import actions from "../../actions";
 import FacebookSDK from "../../utils/FacebookSDK";
 import {
@@ -26,7 +26,7 @@ import {
   ErrorArea
 } from "./styles";
 
-import elements from "../CommonStyle/elements";
+import elements from "../../styles/elements";
 
 class Login extends PureComponent {
   state = {

@@ -1,7 +1,6 @@
 import styled, { css } from "styled-components";
-import { CenterDiv, Button } from "../../CommonStyle";
-
-import { Hr } from "../../CommonStyle/elements/Hr";
+import { CenterDiv, Button } from "../../../styles";
+import { Hr } from "../../../styles/elements/Hr";
 
 const lineSpec = css`
   position: absolute;

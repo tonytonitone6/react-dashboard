@@ -6,7 +6,7 @@ import axios from "axios";
 
 export const list = async (endpoint, data = undefined, option = {}) => {
   const params = {
-
+    option
   };
   const res = axios.get(endpoint, data, params);
 
