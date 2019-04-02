@@ -32,16 +32,17 @@ export default WrapperComponent =>
 
     render() {
       const { status } = this.props;
-      if (status.get("isSuccess")) {
-        return <WrapperComponent {...this.props} />;
-      } else {
-        return (
-          <Container>
-            <Animation.loading.CircleContainer>
-              <Animation.loading.SmallCycle />
-            </Animation.loading.CircleContainer>
-          </Container>
-        )
-      }
+      return <WrapperComponent {...this.props} />;
+      // if (status.get("isSuccess")) {
+      //   return <WrapperComponent {...this.props} />;
+      // } else {
+      //   return (
+      //     <Container>
+      //       <Animation.loading.CircleContainer>
+      //         <Animation.loading.SmallCycle />
+      //       </Animation.loading.CircleContainer>
+      //     </Container>
+      //   )
+      // }
     }
   };
