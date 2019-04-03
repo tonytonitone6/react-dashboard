@@ -9,7 +9,7 @@ import {
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Content from '../Content';
-import SideNav from '../Sidemenu';
+import SideNav from '../SideNav';
 
 @authRoute
 @pureComponent

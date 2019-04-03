@@ -2,8 +2,12 @@ import styled from 'styled-components';
 
 
 export const SidemenuContainer = styled.div`
+  width: 100%;
+  height: 100%;
   grid-area: sidenav;
   background-color: #394263;
+  transform: ${props => props.active ? 'translateX(0)' : 'translateX(-26rem)'};
+  transition: all .6s ease-in-out;
 `;
 
 export const SideMenuList = styled.ul`

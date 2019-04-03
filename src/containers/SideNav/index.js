@@ -9,6 +9,10 @@ import {
 
 class Sidemenu extends PureComponent {
 
+  state = {
+    active: true
+  }
+
   onRenderOutside = (item) => (
     <SideMenuItem key={item.id}>
       {item.name}
@@ -17,8 +21,9 @@ class Sidemenu extends PureComponent {
 
   render() {
     const { menuList } = this.props;
+    const { active } = this.state;
     return (
-      <SidemenuContainer>
+      <SidemenuContainer active={active} >
         <SideMenuList>
           {menuList.map(this.onRenderOutside)}
         </SideMenuList>
