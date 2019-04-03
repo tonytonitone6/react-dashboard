@@ -13,8 +13,9 @@ import store from "./src/store";
 // }
 
 const GlobalStyle = createGlobalStyle`
-  * {
-    :focus {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    &:focus {
       outline: none;
     }
   }
@@ -24,13 +25,12 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
     padding: 0;
     margin: 0;
-    box-sizing: border-box;
     font-size: 10px;
   }
 `;
 
-const LoadableApp = lazy(() => import("./src/container/App"));
-const LoadableLogin = lazy(() => import("./src/container/Login"));
+const LoadableApp = lazy(() => import("./src/containers/App"));
+const LoadableLogin = lazy(() => import("./src/containers/Login"));
 
 ReactDOM.render(
   <Provider store={store}>

@@ -1,11 +1,25 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
+
 import {
-  HeaderSearchField
+  Avatar
+} from './avatar'
+import {
+  HeaderSearch
+} from './search';
+import {
+  HeaderContainer
 } from './styles';
 
-
-export const HeaderSearch = () => {
-  return (
-    <HeaderSearchField />
-  );
+class Header extends PureComponent {
+  render() {
+    return (
+      <HeaderContainer>
+        <HeaderSearch />
+        <Avatar />
+      </HeaderContainer>
+    );
+  }
 }
+
+export default connect(null, null)(Header);
