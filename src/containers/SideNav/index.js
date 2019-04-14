@@ -1,9 +1,12 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import {
   SidemenuContainer,
   SideMenuList,
-  SideMenuItem
+  SideMenuItem,
+  InsideDiv
 } from './styles'
 
 
@@ -13,9 +16,21 @@ class Sidemenu extends PureComponent {
     active: true
   }
 
+  onRenderInSide = (item) => {
+    console.log(item)
+    return (
+      <Fragment>
+        <InsideDiv>
+          <span><FontAwesomeIcon icon={item.icon} /></span>
+          <span>{item.name}</span>
+        </InsideDiv>
+      </Fragment>
+    )
+  }
+
   onRenderOutside = (item) => (
     <SideMenuItem key={item.id}>
-      {item.name}
+      {this.onRenderInSide(item)}
     </SideMenuItem>
   )
 

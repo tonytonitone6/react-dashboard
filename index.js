@@ -1,4 +1,16 @@
 import "./node_modules/normalize.css/normalize.css";
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+import { 
+  faEraser, 
+  faAlignLeft, 
+  faAssistiveListeningSystems,
+  faBolt,
+  faMapMarked,
+  faShareSquare,
+  faAmericanSignLanguageInterpreting,
+  faMapMarkedAlt
+} from '@fortawesome/free-solid-svg-icons';
 import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
@@ -15,9 +27,6 @@ import store from "./src/store";
 const GlobalStyle = createGlobalStyle`
   *, *::before, *::after {
     box-sizing: border-box;
-    &:focus {
-      outline: none;
-    }
   }
 
   html, body, #root {
@@ -28,7 +37,16 @@ const GlobalStyle = createGlobalStyle`
     font-size: 10px;
   }
 `;
-
+library.add(
+  fab, 
+  faEraser, 
+  faAlignLeft, 
+  faAssistiveListeningSystems,
+  faBolt,
+  faShareSquare,
+  faAmericanSignLanguageInterpreting,
+  faMapMarkedAlt
+  );
 const LoadableApp = lazy(() => import("./src/containers/App"));
 const LoadableLogin = lazy(() => import("./src/containers/Login"));
 

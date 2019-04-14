@@ -25,3 +25,12 @@ export const SideMenuItem = styled.li`
     cursor: pointer;
   }
 `;
+
+export const InsideDiv = styled.div`
+  font-size: 1.4rem;
+  & > span {
+    &:first-child {
+      margin-right: .5rem;
+    }
+  }
+`;
