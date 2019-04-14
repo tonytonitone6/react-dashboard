@@ -6,7 +6,6 @@ import {
   faAlignLeft, 
   faAssistiveListeningSystems,
   faBolt,
-  faMapMarked,
   faShareSquare,
   faAmericanSignLanguageInterpreting,
   faMapMarkedAlt
