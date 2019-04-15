@@ -18,20 +18,32 @@ export const SideMenuList = styled.ul`
 
 export const SideMenuItem = styled.li`
   color: #ddd;
-
   &:hover {
-    /* background-color: rgba(255, 255, 255, .2); */
     cursor: pointer;
   }
 `;
 
 export const InsideDiv = styled.div`
+  position: relative;
   font-size: 1.4rem;
   padding: 2rem 2rem 2rem 4rem;
   & > span {
     &:first-child {
       margin-right: 1rem;
     }
+  }
+
+  &::after {
+    position: absolute;
+    content: "";
+    width: 1rem;
+    height: 1rem;
+    right: 1rem;
+    top: 2.25rem;
+    border-bottom: .2rem solid rgba(255, 255, 255, .5);
+    border-right: .2rem solid rgba(255, 255, 255, .5);
+    transition: all .2s;
+    transform: ${props => props.show ? 'rotate(405deg)' : 'rotate(225deg)'}
   }
 `;
 
@@ -58,7 +70,11 @@ export const InsideUl = styled.ul`
     }
 
     & > span {
+      display: inline-block;
       margin-right: 1rem;
+      &:first-child {
+        width: 1.5rem;
+      }
     }
 
     &:hover {

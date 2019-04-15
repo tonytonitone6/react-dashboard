@@ -25,14 +25,15 @@ class Sidemenu extends PureComponent {
 
   onRenderInSide = (outItem) => {
     const { targetId } = this.state;
-
+    const active = (targetId === outItem.id);
+    
     return (
       <Fragment>
-        <InsideDiv onClick={() => this._onToggleView(outItem.id)}>
+        <InsideDiv show={active} onClick={() => this._onToggleView(outItem.id)}>
           <span><FontAwesomeIcon icon={outItem.icon} /></span>
           <span>{outItem.name}</span>
         </InsideDiv>
-        <InsideUl active={(targetId === outItem.id)}>
+        <InsideUl active={active}>
           { outItem.child.map((item) => (
             <li key={item.id}>
               <span><FontAwesomeIcon icon={item.icon} /></span>
