@@ -18,8 +18,8 @@ class Sidemenu extends PureComponent {
   }
 
   _onToggleView = (targetId) => {
-    this.setState(() => ({
-      targetId
+    this.setState(prevState => ({
+      targetId: prevState.targetId === targetId ? null : targetId,
     }));
   }
 
@@ -32,7 +32,7 @@ class Sidemenu extends PureComponent {
           <span><FontAwesomeIcon icon={outItem.icon} /></span>
           <span>{outItem.name}</span>
         </InsideDiv>
-        <InsideUl active={ (targetId === outItem.id) }>
+        <InsideUl active={(targetId === outItem.id)}>
           { outItem.child.map((item) => (
             <li key={item.id}>
               <span><FontAwesomeIcon icon={item.icon} /></span>
@@ -52,7 +52,6 @@ class Sidemenu extends PureComponent {
 
   render() {
     const { menuList } = this.props;
-    // const { active } = this.state;
     return (
       <SidemenuContainer active>
         <SideMenuList>
