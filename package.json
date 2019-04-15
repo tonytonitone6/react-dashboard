@@ -28,6 +28,7 @@
     "lodash": "^4.17.11",
     "moment": "^2.22.2",
     "normalize.css": "^8.0.0",
+    "polished": "^3.2.0",
     "prop-types": "^15.6.2",
     "react": "^16.8.5",
     "react-decoration": "^2.0.0",

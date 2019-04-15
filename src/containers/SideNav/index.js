@@ -6,24 +6,40 @@ import {
   SidemenuContainer,
   SideMenuList,
   SideMenuItem,
-  InsideDiv
+  InsideDiv,
+  InsideUl
 } from './styles'
 
 
 class Sidemenu extends PureComponent {
 
   state = {
-    active: true
+    targetId: null
   }
 
-  onRenderInSide = (item) => {
-    console.log(item)
+  _onToggleView = (targetId) => {
+    this.setState(() => ({
+      targetId
+    }));
+  }
+
+  onRenderInSide = (outItem) => {
+    const { targetId } = this.state;
+
     return (
       <Fragment>
-        <InsideDiv>
-          <span><FontAwesomeIcon icon={item.icon} /></span>
-          <span>{item.name}</span>
+        <InsideDiv onClick={() => this._onToggleView(outItem.id)}>
+          <span><FontAwesomeIcon icon={outItem.icon} /></span>
+          <span>{outItem.name}</span>
         </InsideDiv>
+        <InsideUl active={ (targetId === outItem.id) }>
+          { outItem.child.map((item) => (
+            <li key={item.id}>
+              <span><FontAwesomeIcon icon={item.icon} /></span>
+              <span>{item.name}</span>
+            </li>
+          ))}
+        </InsideUl>
       </Fragment>
     )
   }
@@ -36,9 +52,9 @@ class Sidemenu extends PureComponent {
 
   render() {
     const { menuList } = this.props;
-    const { active } = this.state;
+    // const { active } = this.state;
     return (
-      <SidemenuContainer active={active} >
+      <SidemenuContainer active>
         <SideMenuList>
           {menuList.map(this.onRenderOutside)}
         </SideMenuList>

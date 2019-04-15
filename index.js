@@ -2,6 +2,7 @@ import "./node_modules/normalize.css/normalize.css";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { 
+  fas,
   faEraser, 
   faAlignLeft, 
   faAssistiveListeningSystems,
@@ -37,7 +38,8 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 library.add(
-  fab, 
+  fab,
+  fas,
   faEraser, 
   faAlignLeft, 
   faAssistiveListeningSystems,
