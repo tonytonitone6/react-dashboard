@@ -2,13 +2,17 @@ import React from 'react';
 import { pureComponent } from 'react-decoration';
 import { connect } from 'react-redux';
 
+import {
+  WeatherContainer
+} from './styles';
+
 @pureComponent
 class Weather {
   render() {
     return (
-      <div>
+      <WeatherContainer>
         weather
-      </div>
+      </WeatherContainer>
     )
   }
 };

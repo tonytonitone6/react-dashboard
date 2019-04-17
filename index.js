@@ -36,6 +36,11 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     font-size: 10px;
   }
+
+  a {
+    color: inherit;
+    text-decoration: inherit;
+  }
 `;
 library.add(
   fab,

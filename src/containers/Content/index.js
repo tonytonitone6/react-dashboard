@@ -2,8 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { pureComponent } from 'react-decoration';
 import { Route, Switch, withRouter } from 'react-router-dom';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
+
 
 import Default from '../Default';
+import Weather from '../../components/Weather';
+import Map from '../../components/Map';
 import {
   MainContainer
 } from './styles';
@@ -11,12 +15,27 @@ import {
 @pureComponent
 class Content {
   render() {
-    const { match } = this.props;
+    const { 
+      match,
+      location
+    } = this.props;
     return (
       <MainContainer>
-        <Switch>
-          <Route exact path={match.url} component={Default} />
-        </Switch>
+        <TransitionGroup className="transition-group">
+          <CSSTransition
+            key={location.key}
+            timeout={{ enter: 300 }}
+            classNames="fade"
+          >
+            <div className="route-section">
+              <Switch location={location}>
+                <Route exact path={match.url} component={Default} />
+                <Route path="/weather" component={Weather} />
+                <Route path="/map" component={Map} />
+              </Switch>
+            </div>
+          </CSSTransition>
+        </TransitionGroup>
       </MainContainer>
     );
   }

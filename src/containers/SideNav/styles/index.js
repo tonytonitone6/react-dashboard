@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { darken } from 'polished';
 
 export const SidemenuContainer = styled.div`
   width: 100%;
@@ -58,29 +57,33 @@ export const InsideUl = styled.ul`
   transition: all .3s ease-in-out;
   width: 100%;
   & > li {
-    /* padding: .8rem 1rem; */
+    display: inline-block;
+    width: 100%;
     padding: 1rem 0 1rem 6rem;
     font-size: 1.4rem;
     text-transform:capitalize;
     color: #fff;
     background-color: #262c43;
-
     &:first-child {
       padding-top: 1.2rem;
     }
-
-    & > span {
-      display: inline-block;
-      margin-right: 1rem;
-      &:first-child {
-        width: 1.5rem;
-      }
-    }
-
     &:hover {
       background-color: rgba(255, 255, 255, .1);
       cursor: pointer;
     }
+    & > a {
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      
+      & > span {
+      display: inline-block;
 
+      margin-right: 1rem;
+      &:first-child {
+        width: 1.5rem;
+        }
+      }
+    }
   }
 `;
