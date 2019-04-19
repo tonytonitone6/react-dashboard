@@ -27,6 +27,7 @@ import store from "./src/store";
 const GlobalStyle = createGlobalStyle`
   *, *::before, *::after {
     box-sizing: border-box;
+    outline: none;
   }
 
   html, body, #root {
@@ -64,8 +65,8 @@ ReactDOM.render(
           <GlobalStyle />
           <Suspense fallback={<div />}>
             <Switch>
-              <Route path="/login" component={LoadableLogin} />
-              <Route exact path="/" component={LoadableApp} />
+              <Route exact path="/login" component={LoadableLogin} />
+              <Route path="/" component={LoadableApp} />
             </Switch>
           </Suspense>
         </React.Fragment>

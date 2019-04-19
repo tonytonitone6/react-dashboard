@@ -8,6 +8,8 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Default from '../Default';
 import Weather from '../../components/Weather';
 import Map from '../../components/Map';
+import Account from '../../components/Account';
+
 import {
   MainContainer
 } from './styles';
@@ -32,6 +34,7 @@ class Content {
                 <Route exact path={match.url} component={Default} />
                 <Route path="/weather" component={Weather} />
                 <Route path="/map" component={Map} />
+                <Route path="/account" component={Account} />
               </Switch>
             </div>
           </CSSTransition>
