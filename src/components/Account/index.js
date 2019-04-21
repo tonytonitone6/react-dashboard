@@ -2,9 +2,11 @@ import React from 'react';
 import { pureComponent } from 'react-decoration';
 import { connect } from 'react-redux';
 
+import actions from '../../actions';
 import {
   AccountContainer,
-  SearchField
+  SearchField,
+  SearchInput
 } from './styles';
 import Table from '../../common/Table';
 
@@ -12,7 +14,7 @@ import Table from '../../common/Table';
 class Account {
 
   state = {
-    // field: ['userName', 'email', 'createTime']
+    
     fields: [
       {
         id: '001',
@@ -29,13 +31,41 @@ class Account {
     ]
   }
 
+  componentDidMount() {
+    const { accountList } = this.props;
+    if (accountList && accountList !== 'undefined') {
+      accountList();
+    }
+  }
+
+  onReceviedName = (e) => {
+    console.log(e.target.value);
+  }
+
+  onReceviedEmail = (e) => {
+    console.log(e);
+  }
+
   render() {
     const { fields } = this.state;
 
     return (
       <AccountContainer>
         <SearchField>
-          
+          <SearchInput>
+            <input 
+              onChange={this.onReceviedName} 
+              placeholder="Please enter your username"
+              type="text" 
+            />
+          </SearchInput>
+          <SearchInput>
+            <input 
+              onChange={this.onReceviedEmail} 
+              placeholder="Please enter your email"
+              type="text" 
+            />
+          </SearchInput>
         </SearchField>
         <Table 
           fields={fields}
@@ -45,4 +75,8 @@ class Account {
   }
 }
 
-export default connect(null, null)(Account);
+const mapStateToProps = (state) => ({
+
+  }) 
+
+export default connect(mapStateToProps, { ...actions })(Account);

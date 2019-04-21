@@ -38,6 +38,12 @@ const GlobalStyle = createGlobalStyle`
     font-size: 10px;
   }
 
+  input {
+    border-style: none;
+    background: transparent;
+    outline: none;
+  }
+
   a {
     color: inherit;
     text-decoration: inherit;
