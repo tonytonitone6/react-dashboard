@@ -1,6 +1,7 @@
 import React from 'react';
 import { pureComponent } from 'react-decoration';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import {
   Container,
@@ -10,7 +11,6 @@ import {
 
 @pureComponent
 class Table {
-
 
   onRenderHeaderFields = (item) => (<th key={item.id}>{item.name}</th>)
   
@@ -37,6 +37,18 @@ class Table {
       </Container>
     );
   }
+}
+
+Table.propTypes = {
+  accountList: PropTypes.arrayOf(PropTypes.shape({
+    email: PropTypes.string,
+    password: PropTypes.string,
+    updateAt: PropTypes.string,
+  })),
+  fields: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired
+  }))
 }
 
 export default connect(null, null)(Table);

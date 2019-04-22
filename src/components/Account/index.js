@@ -1,8 +1,12 @@
 import React from 'react';
 import { pureComponent } from 'react-decoration';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
 import actions from '../../actions';
+import { 
+  getAccountList
+} from '../../selectors/accountSelector';
 import {
   AccountContainer,
   SearchField,
@@ -48,7 +52,8 @@ class Account {
 
   render() {
     const { fields } = this.state;
-
+    const { accounts } = this.props;
+    console.log(accounts);
     return (
       <AccountContainer>
         <SearchField>
@@ -69,14 +74,19 @@ class Account {
         </SearchField>
         <Table 
           fields={fields}
+          accountList={accounts}
         />
       </AccountContainer>
     )
   }
 }
 
-const mapStateToProps = (state) => ({
+Account.defaultProps = {
+  accounts: []
+};
 
-  }) 
+const mapStateToProps = createStructuredSelector({
+  accounts: getAccountList
+});
 
 export default connect(mapStateToProps, { ...actions })(Account);
