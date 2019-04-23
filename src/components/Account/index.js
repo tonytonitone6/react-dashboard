@@ -2,6 +2,7 @@ import React from 'react';
 import { pureComponent } from 'react-decoration';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import { Map } from 'immutable';
 
 import actions from '../../actions';
 import { 
@@ -10,7 +11,8 @@ import {
 import {
   AccountContainer,
   SearchField,
-  SearchInput
+  SearchInput,
+  SubButton
 } from './styles';
 import Table from '../../common/Table';
 
@@ -18,21 +20,10 @@ import Table from '../../common/Table';
 class Account {
 
   state = {
-    
-    fields: [
-      {
-        id: '001',
-        name: 'userName'
-      },
-      {
-        id: '002',
-        name: 'email'
-      },
-      {
-        id: '003',
-        name: 'createTime'
-      }
-    ]
+    userInfo: Map({
+      userName: "",
+      email: ""
+    })
   }
 
   componentDidMount() {
@@ -42,35 +33,60 @@ class Account {
     }
   }
 
-  onReceviedName = (e) => {
-    console.log(e.target.value);
+  onReceivedName = (e) => {
+    const { userInfo } = this.state;
+
+    this.setState({
+      userInfo: userInfo.set("userName", e.target.value)
+    });
   }
 
-  onReceviedEmail = (e) => {
-    console.log(e);
+  onReceivedEmail = (e) => {
+    const { userInfo } = this.state;
+
+    this.setState({
+      userInfo: userInfo.set("email", e.target.value)
+    });
+  }
+
+  onSearchButton = (e) => {
+    e.preventDefault();
+    const { userInfo } = this.state;
+    this.setState({
+      userInfo: userInfo.set("userName", "").set("email", "")
+    })
   }
 
   render() {
-    const { fields } = this.state;
-    const { accounts } = this.props;
-    console.log(accounts);
+    const { accounts, fields } = this.props;
+    const { userInfo } = this.state;
+    const userName = userInfo.get("userName");
+    const email = userInfo.get("email");
     return (
       <AccountContainer>
         <SearchField>
           <SearchInput>
             <input 
-              onChange={this.onReceviedName} 
+              onChange={this.onReceivedName} 
               placeholder="Please enter your username"
-              type="text" 
+              type="text"
+              value={userName}
             />
           </SearchInput>
           <SearchInput>
             <input 
-              onChange={this.onReceviedEmail} 
+              onChange={this.onReceivedEmail} 
               placeholder="Please enter your email"
               type="text" 
+              value={email}
             />
           </SearchInput>
+          <SubButton 
+            type="submit" 
+            onClick={this.onSearchButton}
+          >
+            Search
+          </SubButton>
         </SearchField>
         <Table 
           fields={fields}
@@ -82,8 +98,23 @@ class Account {
 }
 
 Account.defaultProps = {
-  accounts: []
+  accounts: [],
+  fields: [
+    {
+      id: '001',
+      name: 'userName'
+    },
+    {
+      id: '002',
+      name: 'email'
+    },
+    {
+      id: '003',
+      name: 'createTime'
+    }
+  ]
 };
+
 
 const mapStateToProps = createStructuredSelector({
   accounts: getAccountList

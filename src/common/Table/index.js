@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {  } from 'react';
 import { pureComponent } from 'react-decoration';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import {
   Container,
+  CommonTable,
   TableHeader,
   TableDetail
 } from './styles';
@@ -14,12 +15,21 @@ class Table {
 
   onRenderHeaderFields = (item) => (<th key={item.id}>{item.name}</th>)
   
+  onRenderListItem = (item) => (
+    <tr key={item._id}>
+      <td>{item.name}</td>
+      <td>{item.email}</td>
+      <td>{item.updatedAt}</td>
+    </tr>
+    )
+
   render() {
-    const { fields } = this.props;
+    const { fields, accountList } = this.props;
+
     return (
       <Container>
         <TableHeader>
-          <table 
+          <CommonTable 
             cellPadding="0" 
             cellSpacing="0"
             border="0"
@@ -29,10 +39,15 @@ class Table {
                 {fields.map(item => this.onRenderHeaderFields(item))}
               </tr>
             </thead>
-          </table>
+          </CommonTable>
         </TableHeader>
         <TableDetail>
-
+          {/* { accountList.length !== 0 && accountList.map(this.onRenderListItem)} */}
+          <CommonTable>
+            <thead>
+              {accountList.map(this.onRenderListItem)}
+            </thead>
+          </CommonTable>
         </TableDetail>
       </Container>
     );

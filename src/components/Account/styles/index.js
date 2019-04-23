@@ -1,5 +1,7 @@
 import styled, { keyframes } from 'styled-components';
-
+import {
+  CommonButton
+} from '../../../styles/elements/Button';
 
 const gradient = keyframes`
   0% {
@@ -20,9 +22,10 @@ export const AccountContainer = styled.div`
 
 export const SearchField = styled.div`
   width: 100%;
-  height: 30%;
+  height: 20%;
   display: flex;
   justify-content: space-around;
+  align-items: center;
 `;
 
 export const SearchInput = styled.div`
@@ -56,4 +59,28 @@ export const SearchInput = styled.div`
     background-size: 500% auto;
     animation: ${gradient} 3s linear infinite;
   }
+`;
+
+
+export const SubButton = styled(CommonButton)`
+  
+  background-color: #009ac9;
+  height: 3.5rem;
+  width: 15rem;
+  color: #fff;
+  border: 1px solid transparent;
+  box-shadow: .3rem -.3rem .2rem #000;
+  &:hover {
+    font-weight: 1000;
+    font-size: 1.2rem;
+    background-color: #fff;
+    color: #000;
+    transition: all .5s ease-in;
+  }
+
+  &:active {
+    box-shadow: none;
+    transition: all .1s ease-in;
+  }
+
 `;

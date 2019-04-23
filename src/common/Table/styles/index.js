@@ -1,6 +1,18 @@
 import styled from 'styled-components';
 
 
+export const CommonTable = styled.table`
+  width: 100%;
+  table-layout: fixed;
+
+  & td {
+    color: #fff;
+    font-weight: 500;
+    height: 1.5rem;
+    vertical-align: middle;
+  }
+`;
+
 
 export const Container = styled.div`
   width: 100%;
