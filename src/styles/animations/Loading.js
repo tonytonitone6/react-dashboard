@@ -12,7 +12,7 @@ const InsideCircle = keyframes`
     border-right: .5rem solid #c0392b;
   }
 `;
- 
+
 export const CircleContainer = styled.div`
   position: relative;
   display: flex;

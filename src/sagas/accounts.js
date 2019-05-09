@@ -20,10 +20,13 @@ export function* getAccountList() {
     } else {
       yield put({ type: types.ACCOUNT_DATALIST, result});
     }
-
-
-
   } catch (error) {
     console.log(error);
   }
 }
+
+
+// export function* getFilterUser(action) {
+//   const params = { ...action }
+  
+// }

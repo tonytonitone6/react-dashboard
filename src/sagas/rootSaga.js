@@ -1,4 +1,4 @@
-import { all, takeEvery } from "redux-saga/effects";
+import { all, takeEvery, takeLatest } from "redux-saga/effects";
 import * as auth from "./auth";
 import * as accounts from './accounts';
 import types from "../actions/constants";
@@ -12,7 +12,8 @@ function* rootSagas() {
     takeEvery(types.USER_STATUS, auth.userSigninStatus),
   ]);
   yield all([
-    takeEvery(types.GET_ACCOUNT_LIST, accounts.getAccountList)
+    takeEvery(types.GET_ACCOUNT_LIST, accounts.getAccountList),
+    // takeLatest(types.FILTER_ACCOUNT, accounts.getFilterUser)
   ])
 }
 

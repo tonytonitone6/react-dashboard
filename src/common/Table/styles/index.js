@@ -4,12 +4,13 @@ import styled from 'styled-components';
 export const CommonTable = styled.table`
   width: 100%;
   table-layout: fixed;
-
+  
   & td {
     color: #fff;
     font-weight: 500;
-    height: 1.5rem;
+    height: 2rem;
     vertical-align: middle;
+    text-align: center;
   }
 `;
 
@@ -27,8 +28,10 @@ export const TableHeader = styled.div`
   }
 
   & tr {
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 1fr 1fr;
+    /* justify-content: space-around; */
 
     & > th {
       padding: 2rem 5rem;

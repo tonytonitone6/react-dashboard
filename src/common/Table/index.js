@@ -25,7 +25,6 @@ class Table {
 
   render() {
     const { fields, accountList } = this.props;
-
     return (
       <Container>
         <TableHeader>
@@ -36,7 +35,7 @@ class Table {
           >
             <thead>
               <tr>
-                {fields.map(item => this.onRenderHeaderFields(item))}
+                {fields.map(this.onRenderHeaderFields)}
               </tr>
             </thead>
           </CommonTable>

@@ -12,7 +12,7 @@ import {
 } from './styles'
 
 
-class Sidemenu extends PureComponent {
+class SideMenu extends PureComponent {
 
   state = {
     targetId: null
@@ -65,4 +65,4 @@ class Sidemenu extends PureComponent {
   }
 }
 
-export default connect(null, null)(Sidemenu);
+export default connect(null, null)(SideMenu);
