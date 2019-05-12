@@ -1,19 +1,39 @@
 import styled from 'styled-components';
 
 
+export const TableDetail = styled.div`
+  height: 80%;
+`;
+
 export const CommonTable = styled.table`
   width: 100%;
   table-layout: fixed;
-  
-  & td {
-    color: #fff;
-    font-weight: 500;
-    height: 2rem;
-    vertical-align: middle;
-    text-align: center;
+
+  & > thead {
+    & > tr > td {
+      color: #fff;
+      font-weight: 500;
+      height: 2rem;
+      vertical-align: middle;
+      text-align: center;
+    }
+
+    & > tr.trSpacing {
+      &:hover {
+        & > td {
+          background-color: #000;
+        }
+      }
+      
+      & > td {
+        padding: 1rem;
+        background-color: #353b48;
+        border-right: .2rem solid #435050;
+        border-bottom: .3rem solid #000;
+      }
+    }
   }
 `;
-
 
 export const Container = styled.div`
   width: 100%;
@@ -42,13 +62,5 @@ export const TableHeader = styled.div`
     }
   }
 `;
-
-
-export const TableDetail = styled.div`
-  height: 80%;
-  /* overflow: auto */
-  border: .1rem solid rgba(255, 255, 255, .3);
-`;
-
 
 

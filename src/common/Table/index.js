@@ -16,7 +16,7 @@ class Table {
   onRenderHeaderFields = (item) => (<th key={item.id}>{item.name}</th>)
   
   onRenderListItem = (item) => (
-    <tr key={item._id}>
+    <tr key={item._id} className="trSpacing">
       <td>{item.name}</td>
       <td>{item.email}</td>
       <td>{item.updatedAt}</td>
@@ -28,11 +28,7 @@ class Table {
     return (
       <Container>
         <TableHeader>
-          <CommonTable 
-            cellPadding="0" 
-            cellSpacing="0"
-            border="0"
-          >
+          <CommonTable>
             <thead>
               <tr>
                 {fields.map(this.onRenderHeaderFields)}
@@ -41,7 +37,6 @@ class Table {
           </CommonTable>
         </TableHeader>
         <TableDetail>
-          {/* { accountList.length !== 0 && accountList.map(this.onRenderListItem)} */}
           <CommonTable>
             <thead>
               {accountList.map(this.onRenderListItem)}

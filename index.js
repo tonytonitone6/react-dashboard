@@ -44,6 +44,10 @@ const GlobalStyle = createGlobalStyle`
     outline: none;
   }
 
+  table {
+    border-collapse:collapse;
+  }
+
   a {
     color: inherit;
     text-decoration: inherit;

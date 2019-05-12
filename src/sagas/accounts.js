@@ -10,10 +10,11 @@ import ErrorHandle from '../utils/ErrorHandle';
 
 export function* getAccountList() {
   const params = {
-    url: '/v1/getAccountList'
+    endPoint: '/v1/getAccountList'
   };
+
   try {
-    const { data: { isSuccess, error, result }} = yield call(api.get.bind(this, params.url));
+    const { data: { isSuccess, error, result }} = yield call(api.get.bind(this, params));
     
     if (!isSuccess) {
       throw new ErrorHandle(error)
@@ -26,7 +27,19 @@ export function* getAccountList() {
 }
 
 
-// export function* getFilterUser(action) {
-//   const params = { ...action }
-  
-// }
+export function* getFilterUser(action) {
+  const params = {
+    endPoint: '/v1/getUser',
+    userName: action.payload.get('userName'),
+    email: action.payload.get('email')
+  };
+
+  try {
+    const { data } = yield call(api.get.bind(this, params))
+  } catch (error) {
+    console.log(error)
+  }
+
+
+
+}

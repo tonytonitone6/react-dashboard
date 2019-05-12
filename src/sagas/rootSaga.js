@@ -13,7 +13,7 @@ function* rootSagas() {
   ]);
   yield all([
     takeEvery(types.GET_ACCOUNT_LIST, accounts.getAccountList),
-    // takeLatest(types.FILTER_ACCOUNT, accounts.getFilterUser)
+    takeLatest(types.FILTER_ACCOUNT, accounts.getFilterUser)
   ])
 }
 

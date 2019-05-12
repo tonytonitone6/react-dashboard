@@ -17,12 +17,13 @@ const gradient = keyframes`
 export const AccountContainer = styled.div`
   width: 100%;
   height: 100%;
-  background: linear-gradient(#636e72, #9198e5);
+  background: linear-gradient(#151818, #050606);
 `;
 
 export const SearchField = styled.div`
   width: 100%;
   height: 20%;
+  min-height: 8rem;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -30,8 +31,8 @@ export const SearchField = styled.div`
 
 export const SearchInput = styled.div`
   position: relative;
-  width: 20rem;
-  height: 3.5rem;
+  width: 100%;
+  max-width: 30rem;
   background-color: rgba(57, 63, 84, 0.8);
 
   & > input {
@@ -39,7 +40,6 @@ export const SearchInput = styled.div`
     color: #7881A1;
     width: 100%;
     height: 100%;
-    max-width: 20rem;
     margin: 0 auto;
     padding: 1.2rem 1.5rem;
     font-size: 1.5rem;

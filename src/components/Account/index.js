@@ -28,16 +28,17 @@ class Account {
 
   componentDidMount() {
     const { accountList } = this.props;
-    if (accountList && accountList !== 'undefined') {
+    if (accountList && typeof accountList !== 'undefined') {
       accountList();
     }
   }
 
   onReceivedName = (e) => {
     const { userInfo } = this.state;
-
+    const userName = e.target.value;
+    
     this.setState({
-      userInfo: userInfo.set("userName", e.target.value)
+      userInfo: userInfo.set("userName", userName)
     });
   }
 
@@ -52,9 +53,14 @@ class Account {
   onSearchButton = (e) => {
     e.preventDefault();
     const { userInfo } = this.state;
+    const { searchUser } = this.props;
+
+    if (searchUser && typeof searchUser !== 'undefined') {
+      searchUser(userInfo);
+    }
     this.setState({
       userInfo: userInfo.set("userName", "").set("email", "")
-    })
+    });
   }
 
   render() {

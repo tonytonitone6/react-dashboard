@@ -53,14 +53,19 @@ export function* userSignin(action) {
 
 export function* userSigninStatus() {
   const token = localStorage.getItem('authToken');
+
+  const params = {
+    endPoint: '/v1/userStatus'
+  };
+
   try {
     if (!token && token === 'undefined') {
-      const params = {
+      const errorParams = {
         message: 'token isn\'t exist'
       };
-      throw new ErrorHandle(params);
+      throw new ErrorHandle(errorParams);
     } else {
-      const { data: { isSuccess, error } } = yield call(Api.get.bind(this, '/v1/userStatus'));
+      const { data: { isSuccess, error } } = yield call(Api.get.bind(this, params));
       if (!isSuccess && error.message !== '') {
         throw new ErrorHandle(error);
       } else {
