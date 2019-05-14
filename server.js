@@ -7,12 +7,6 @@ const app = express();
 
 app.use(history());
 
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'example.com');
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  next();
-});
 
 app.get('*.js', (req, res, next) => {
   req.url = `${req.url}.gz`;

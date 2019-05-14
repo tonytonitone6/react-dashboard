@@ -65,6 +65,7 @@ class Account {
 
   render() {
     const { accounts, fields } = this.props;
+    // console.log(accounts);
     const { userInfo } = this.state;
     const userName = userInfo.get("userName");
     const email = userInfo.get("email");

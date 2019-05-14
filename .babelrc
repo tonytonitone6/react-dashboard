@@ -12,7 +12,8 @@
     }],
     "@babel/plugin-syntax-dynamic-import",
     ["@babel/plugin-proposal-decorators", { "legacy": true }],
-    "@babel/plugin-proposal-class-properties"
+    "@babel/plugin-proposal-class-properties",
+    ["lodash"]
   ],
   "env": {
     "production": {
@@ -22,7 +23,8 @@
         "@babel/plugin-transform-react-constant-elements",
         "@babel/plugin-transform-react-inline-elements",
         "@babel/plugin-transform-runtime",
-        ["@babel/plugin-proposal-decorators", { "legacy": true }]
+        ["@babel/plugin-proposal-decorators", { "legacy": true }],
+        ["lodash"]
       ]
     },
     "test": {

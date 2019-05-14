@@ -4,10 +4,6 @@ import types from '../actions/constants';
 import * as api from './api';
 import ErrorHandle from '../utils/ErrorHandle';
 
-
-
-
-
 export function* getAccountList() {
   const params = {
     endPoint: '/v1/getAccountList'
@@ -15,7 +11,6 @@ export function* getAccountList() {
 
   try {
     const { data: { isSuccess, error, result }} = yield call(api.get.bind(this, params));
-    
     if (!isSuccess) {
       throw new ErrorHandle(error)
     } else {
@@ -35,7 +30,9 @@ export function* getFilterUser(action) {
   };
 
   try {
-    const { data } = yield call(api.get.bind(this, params))
+    const { data: { isSuccess, error, result } } = yield call(api.get.bind(this, params));
+    yield put({ type: types.ACCOUNT_USER, result });
+    
   } catch (error) {
     console.log(error)
   }

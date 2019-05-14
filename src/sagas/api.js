@@ -37,8 +37,11 @@ export const post = async ({ endPoint, ...data }) => {
 export const get = async ({ endPoint , ...data}) => {
   const option = axiosOption.call(this, 'GET', data);
   const res = await axios.get(`${url}${endPoint}`, option);
-
   return res;
+  // return (fn) => {
+  //   const result = res;
+  //   return fn(result);
+  // }
 };
 
 export const update = async (endpoint, data) => {

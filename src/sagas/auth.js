@@ -30,11 +30,13 @@ export function* userSignup(action) {
 export function* userSignin(action) {
   const userLoginData = action.payload;
   const authData = {
+    endPoint: '/v1/userSignin',
     email: userLoginData.get("email"),
     password: userLoginData.get("password")
   };
+
   try {
-    const { data: { error, isSuccess, result } } = yield call(Api.post.bind(this, "/v1/userSignin", authData));
+    const { data: { error, isSuccess, result } } = yield call(Api.post.bind(this, authData));
     if (isSuccess && result !== '') {
       localStorage.setItem('authToken', result);
       yield put({ type: types.USER_SIGNIN_SUCCESS, result: { isSuccess, token: result } });
