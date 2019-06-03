@@ -7,6 +7,11 @@ import { FullShadow, SignupArea, InputArea, ErrorArea } from "./styles";
 const modalRoot = document.getElementById("modal-root");
 
 class Modal extends Component {
+
+  state = {
+    showModal: false
+  };
+
   el = document.createElement("div");
 
   componentDidMount() {
@@ -27,8 +32,14 @@ class Modal extends Component {
   }
 
   render() {
-    const { onToggleModal, children, signup } = this.props;
     let errorMsg = "";
+    const { 
+      onToggleModal, 
+      children, 
+      signup,
+      width,
+      height
+    } = this.props;
 
     if (!signup.get("isSuccess")) {
       errorMsg = signup.getIn(["error", "message"]);
@@ -37,9 +48,12 @@ class Modal extends Component {
     return ReactDOM.createPortal(
       <Fragment>
         <FullShadow
-          onClick={this.isControlled("showModal") ? onToggleModal : ""}
+          onClick={this.isControlled("showModal") ? onToggleModal : () => {}}
         />
-        <SignupArea>
+        <SignupArea
+          width={width}
+          height={height}
+        >
           <InputArea>
             {children}
             <ErrorArea>

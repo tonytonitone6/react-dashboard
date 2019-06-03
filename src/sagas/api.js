@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 // https://github.com/axios/axios/issues/382 never fixed it
 // axios.defaults.headers.common.Authorization = localStorage.getItem('authToken');
@@ -38,10 +38,6 @@ export const get = async ({ endPoint , ...data}) => {
   const option = axiosOption.call(this, 'GET', data);
   const res = await axios.get(`${url}${endPoint}`, option);
   return res;
-  // return (fn) => {
-  //   const result = res;
-  //   return fn(result);
-  // }
 };
 
 export const update = async (endpoint, data) => {

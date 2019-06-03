@@ -240,7 +240,7 @@ const validate = values => {
 
   if (!formData.password) {
     errors.password = "Please enter your password";
-  } else if (!passwordRegexp.test(formData.passwoed)) {
+  } else if (!passwordRegexp.test(formData.password)) {
     errors.password = "Invalid password format";
   }
 

@@ -1,21 +1,35 @@
-import React from 'react';
-import { pureComponent } from 'react-decoration';
+import React, { useState } from 'react';
+// import { pureComponent } from 'react-decoration';
 import { connect } from 'react-redux';
 
 import {
   WeatherContainer
 } from './styles';
 
-@pureComponent
-class Weather {
-  render() {
-    return (
-      <WeatherContainer>
-        weather
-      </WeatherContainer>
-    )
+
+const Weather = () => {
+
+  const [state, setToggle] = useState({toggle: false});
+
+  const onToggle = (e) => {
+
+    setToggle({toggle: !state.toggle});
+    console.log(state, 'inside');
   }
-};
+
+  const test = (e) => {
+    e.stopPropagation();
+    console.log('123');
+  }
+
+  return (
+    <WeatherContainer onClick={onToggle}>
+      <div onClick={test}>
+        123
+      </div>
+    </WeatherContainer>
+  );
+}
 
 export default connect(null, null)(Weather);
 

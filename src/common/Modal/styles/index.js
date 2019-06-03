@@ -27,8 +27,8 @@ export const SignupArea = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 50rem;
-  height: 30rem;
+  width: ${props => props.width ? props.width : '50rem'};
+  height: ${props => props.height ? props.height : '30rem'};
   border-radius: 5%;
   background-color: #fff;
 `;

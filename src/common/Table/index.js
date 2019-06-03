@@ -1,4 +1,4 @@
-import React, {  } from 'react';
+import React from 'react';
 import { pureComponent } from 'react-decoration';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -15,16 +15,24 @@ class Table {
 
   onRenderHeaderFields = (item) => (<th key={item.id}>{item.name}</th>)
   
-  onRenderListItem = (item) => (
-    <tr key={item._id} className="trSpacing">
-      <td>{item.name}</td>
-      <td>{item.email}</td>
-      <td>{item.updatedAt}</td>
-    </tr>
+  onRenderListItem = (cb, item) => (
+      <tr key={item._id} className="trSpacing">
+        <td key={item.name}>{item.name}</td>
+        <td key={item.email}>{item.email}</td>
+        <td key={item.updatedAt}>{item.updatedAt}</td>
+        { cb 
+          ? <td><button type="submit" onClick={cb.bind(this, item)}>123</button></td>
+          : null
+        }
+      </tr>
     )
-
+  
   render() {
-    const { fields, accountList } = this.props;
+    const { 
+      fields, 
+      accountList,
+      onEditFunc = () => {}
+    } = this.props;
     return (
       <Container>
         <TableHeader>
@@ -39,7 +47,7 @@ class Table {
         <TableDetail>
           <CommonTable>
             <thead>
-              {accountList.map(this.onRenderListItem)}
+              {accountList.map(this.onRenderListItem.bind(this, onEditFunc))}
             </thead>
           </CommonTable>
         </TableDetail>
@@ -57,7 +65,8 @@ Table.propTypes = {
   fields: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired
-  }))
+  })),
+  onEditFunc: PropTypes.func
 }
 
 export default connect(null, null)(Table);

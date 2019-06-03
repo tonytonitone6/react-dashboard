@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { pureComponent } from 'react-decoration';
 import { connect } from 'react-redux';
+import { Field, reduxForm } from 'redux-form/immutable';
 import { createStructuredSelector } from 'reselect';
 import { Map } from 'immutable';
 
@@ -14,7 +15,9 @@ import {
   SearchInput,
   SubButton
 } from './styles';
+
 import Table from '../../common/Table';
+import Modal from '../../common/Modal';
 
 @pureComponent
 class Account {
@@ -23,7 +26,8 @@ class Account {
     userInfo: Map({
       userName: "",
       email: ""
-    })
+    }),
+    showModal: false
   }
 
   componentDidMount() {
@@ -31,6 +35,19 @@ class Account {
     if (accountList && typeof accountList !== 'undefined') {
       accountList();
     }
+  }
+
+  onEditItem = item => {
+    this.setState({
+      showModal: true
+    })
+  }
+
+  onToggleModal = () => {
+    const { showModal } = this.state;
+    this.setState({
+      showModal: !showModal
+    });
   }
 
   onReceivedName = (e) => {
@@ -65,42 +82,59 @@ class Account {
 
   render() {
     const { accounts, fields } = this.props;
-    // console.log(accounts);
-    const { userInfo } = this.state;
+    const { 
+      userInfo,
+      showModal
+    } = this.state;
     const userName = userInfo.get("userName");
     const email = userInfo.get("email");
+
     return (
-      <AccountContainer>
-        <SearchField>
-          <SearchInput>
-            <input 
-              onChange={this.onReceivedName} 
-              placeholder="Please enter your username"
-              type="text"
-              value={userName}
-            />
-          </SearchInput>
-          <SearchInput>
-            <input 
-              onChange={this.onReceivedEmail} 
-              placeholder="Please enter your email"
-              type="text" 
-              value={email}
-            />
-          </SearchInput>
-          <SubButton 
-            type="submit" 
-            onClick={this.onSearchButton}
-          >
-            Search
-          </SubButton>
-        </SearchField>
-        <Table 
-          fields={fields}
-          accountList={accounts}
-        />
-      </AccountContainer>
-    )
+      <Fragment>
+        <AccountContainer>
+          <SearchField>
+            <SearchInput>
+              <input 
+                onChange={this.onReceivedName} 
+                placeholder="Please enter your username"
+                type="text"
+                value={userName}
+              />
+            </SearchInput>
+            <SearchInput>
+              <input 
+                onChange={this.onReceivedEmail} 
+                placeholder="Please enter your email"
+                type="text" 
+                value={email}
+              />
+            </SearchInput>
+            <SubButton 
+              type="submit" 
+              onClick={this.onSearchButton}
+            >
+              Search
+            </SubButton>
+          </SearchField>
+          <Table 
+            fields={fields}
+            accountList={accounts}
+            onEditFunc={this.onEditItem}
+          />
+        </AccountContainer>
+        { showModal
+            ? <Modal 
+                onToggleModal={this.onToggleModal} 
+                showModal={showModal}
+                width="80rem"
+                height="60rem"
+              >
+
+              </Modal>
+            : null
+        }
+      </Fragment>
+    );
   }
 }
 
@@ -118,13 +152,29 @@ Account.defaultProps = {
     {
       id: '003',
       name: 'createTime'
+    },
+    {
+      id: '004',
+      name: ''
     }
   ]
 };
+
+const validate = values => {
+  
+}
 
 
 const mapStateToProps = createStructuredSelector({
   accounts: getAccountList
 });
 
-export default connect(mapStateToProps, { ...actions })(Account);
+export default 
+  connect(
+    mapStateToProps, 
+    { ...actions }
+  )(
+    reduxForm({
+      form: 'account',
+      validate
+  })(Account));

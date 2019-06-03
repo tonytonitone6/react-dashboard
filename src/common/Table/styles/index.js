@@ -19,6 +19,10 @@ export const CommonTable = styled.table`
     }
 
     & > tr.trSpacing {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+
+      height: 3.5rem;
       &:hover {
         & > td {
           background-color: #000;
@@ -26,6 +30,7 @@ export const CommonTable = styled.table`
       }
       
       & > td {
+        height: 100%;
         padding: 1rem;
         background-color: #353b48;
         border-right: .2rem solid #435050;
@@ -50,7 +55,7 @@ export const TableHeader = styled.div`
   & tr {
     display: grid;
     width: 100%;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
     /* justify-content: space-around; */
 
     & > th {
