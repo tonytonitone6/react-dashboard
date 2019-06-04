@@ -12,6 +12,7 @@ import actions from 'actions';
 import Table from 'common/Table';
 import Modal from 'common/Modal';
 
+import { isNull } from 'util';
 import {
   AccountContainer,
   SearchField,
@@ -32,6 +33,10 @@ class Account {
       email: "",
       avatar: ""
     }),
+    searchInfo: Map({
+      userName: "",
+      email: ""
+    }),
     showModal: false,
   }
 
@@ -48,7 +53,7 @@ class Account {
         .set('userName', item.name)
         .set('email', item.email),
       showModal: true
-    }), () => console.log(this.state));
+    }));
   }
 
   onDeleteItem = _id => {
@@ -67,48 +72,50 @@ class Account {
   }
 
   onReceivedName = (e) => {
-    const { userInfo } = this.state;
+    const { searchInfo } = this.state;
     const userName = e.target.value;
     
     this.setState({
-      userInfo: userInfo.set("userName", userName)
+      searchInfo: searchInfo.set("userName", userName)
     });
   }
 
   onReceivedEmail = (e) => {
-    const { userInfo } = this.state;
+    const { searchInfo } = this.state;
 
     this.setState({
-      userInfo: userInfo.set("email", e.target.value)
+      searchInfo: searchInfo.set("email", e.target.value)
     });
   }
 
   onSearchButton = (e) => {
     e.preventDefault();
-    const { userInfo } = this.state;
+    const { searchInfo } = this.state;
     const { searchUser } = this.props;
 
     if (searchUser && typeof searchUser !== 'undefined') {
-      searchUser(userInfo);
+      searchUser(searchInfo);
     }
     this.setState({
-      userInfo: userInfo.set("userName", "").set("email", "")
+      searchInfo: searchInfo.set("userName", "").set("email", "")
     });
   }
 
-  onRenderEditContent = field => {
+  onRenderEditContent = (field) => {
     const { 
       type, 
       label,
-      name,
-      placeholder, 
+      placeholder,
+      keyType: key = "",
       input 
     } = field;
-    console.log(name);
+
     const { 
       userInfo 
     } = this.state;
 
+    console.log(key, 'key');
+    
     return (
       <EditArea>
         <EditLabel>{label}</EditLabel>
@@ -117,26 +124,27 @@ class Account {
           type={type}
           placeholder={placeholder}
           autoComplete="off"
-          value={userInfo.get(name)}
+          // value={userInfo.get(key)}
+          value={ key !== "" ? userInfo.get(key) : ""}
         />
       </EditArea>
     );
   }
 
-  onChangeEditData = (keyName, e) => {    
+  onChangeEditData = (key, e) => {    
     this.setState((prevState) => ({
-      userInfo: prevState.userInfo.set(keyName, e.target.value)
-    }), console.log(this.state));
+      userInfo: prevState.userInfo.set(key, e.target.value)
+    }));
   }
 
   render() {
     const { accounts, fields } = this.props;
     const { 
-      userInfo,
+      searchInfo,
       showModal
     } = this.state;
-    const userName = userInfo.get("userName");
-    const email = userInfo.get("email");
+    const userName = searchInfo.get("userName");
+    const email = searchInfo.get("email");
 
     return (
       <Fragment>
@@ -183,6 +191,7 @@ class Account {
               label="Name"
               name="userName"
               type="text"
+              keyType="userName"
               placeholder="Please enter your name"
               component={this.onRenderEditContent}
               onChange={this.onChangeEditData.bind(this, 'userName')}
@@ -191,9 +200,16 @@ class Account {
               label="Email"
               name="email"
               type="text"
+              keyType="email"
               placeholder="Please enter your email"
               component={this.onRenderEditContent}
               onChange={this.onChangeEditData.bind(this, 'email')}
+            />
+            <Field 
+              label="upload photo"
+              name="file"
+              type="file"
+              component={this.onRenderEditContent}
             />
           </Modal>
           : null

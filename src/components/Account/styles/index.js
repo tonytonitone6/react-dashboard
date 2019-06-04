@@ -84,10 +84,14 @@ export const SubButton = styled(elements.CommonButton)`
 
 export const EditArea = styled.div`
   width: 100%;
-  height: 3rem;
-  margin-left: 3rem;
+  height: 4rem;
+  padding-left: 2rem;
   font-size: 2rem;
-  line-height: 3rem;
+  margin: 2rem 0;
+
+  & > input[type="file"] {
+    display: none;
+  }
 `;
 
 export const EditLabel = styled.label`
@@ -101,4 +105,5 @@ export const EditInput = styled(elements.CustomInputField)`
   cursor: pointer;
   background-color: #636e72;
   padding: 2rem;
+  height: 100%;
 `;
