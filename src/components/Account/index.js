@@ -5,19 +5,23 @@ import { Field, reduxForm } from 'redux-form/immutable';
 import { createStructuredSelector } from 'reselect';
 import { Map } from 'immutable';
 
-import actions from '../../actions';
 import { 
   getAccountList
-} from '../../selectors/accountSelector';
+} from 'selectors/accountSelector';
+import actions from 'actions';
+import Table from 'common/Table';
+import Modal from 'common/Modal';
+
 import {
   AccountContainer,
   SearchField,
   SearchInput,
-  SubButton
+  SubButton,
+  EditArea,
+  EditLabel,
+  EditInput
 } from './styles';
 
-import Table from '../../common/Table';
-import Modal from '../../common/Modal';
 
 @pureComponent
 class Account {
@@ -25,9 +29,10 @@ class Account {
   state = {
     userInfo: Map({
       userName: "",
-      email: ""
+      email: "",
+      avatar: ""
     }),
-    showModal: false
+    showModal: false,
   }
 
   componentDidMount() {
@@ -38,9 +43,20 @@ class Account {
   }
 
   onEditItem = item => {
-    this.setState({
+    this.setState((prevState) => ({
+      userInfo: prevState.userInfo
+        .set('userName', item.name)
+        .set('email', item.email),
       showModal: true
-    })
+    }), () => console.log(this.state));
+  }
+
+  onDeleteItem = _id => {
+    const { deleteAccount } = this.props;
+
+    if (deleteAccount && typeof deleteAccount === 'function') {
+      deleteAccount(_id);
+    }
   }
 
   onToggleModal = () => {
@@ -78,6 +94,39 @@ class Account {
     this.setState({
       userInfo: userInfo.set("userName", "").set("email", "")
     });
+  }
+
+  onRenderEditContent = field => {
+    const { 
+      type, 
+      label,
+      name,
+      placeholder, 
+      input 
+    } = field;
+    console.log(name);
+    const { 
+      userInfo 
+    } = this.state;
+
+    return (
+      <EditArea>
+        <EditLabel>{label}</EditLabel>
+        <EditInput 
+          {...input} 
+          type={type}
+          placeholder={placeholder}
+          autoComplete="off"
+          value={userInfo.get(name)}
+        />
+      </EditArea>
+    );
+  }
+
+  onChangeEditData = (keyName, e) => {    
+    this.setState((prevState) => ({
+      userInfo: prevState.userInfo.set(keyName, e.target.value)
+    }), console.log(this.state));
   }
 
   render() {
@@ -120,18 +169,34 @@ class Account {
             fields={fields}
             accountList={accounts}
             onEditFunc={this.onEditItem}
+            onDeleteItem={this.onDeleteItem}
           />
         </AccountContainer>
-        { showModal
-            ? <Modal 
-                onToggleModal={this.onToggleModal} 
-                showModal={showModal}
-                width="80rem"
-                height="60rem"
-              >
-
-              </Modal>
-            : null
+        { showModal ? 
+          <Modal 
+            onToggleModal={this.onToggleModal} 
+            showModal={showModal}
+            width="70rem"
+            height="50rem"
+          >
+            <Field 
+              label="Name"
+              name="userName"
+              type="text"
+              placeholder="Please enter your name"
+              component={this.onRenderEditContent}
+              onChange={this.onChangeEditData.bind(this, 'userName')}
+            />
+            <Field 
+              label="Email"
+              name="email"
+              type="text"
+              placeholder="Please enter your email"
+              component={this.onRenderEditContent}
+              onChange={this.onChangeEditData.bind(this, 'email')}
+            />
+          </Modal>
+          : null
         }
       </Fragment>
     );
@@ -161,7 +226,7 @@ Account.defaultProps = {
 };
 
 const validate = values => {
-  
+  // console.log(values);
 }
 
 

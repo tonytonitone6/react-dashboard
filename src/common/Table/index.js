@@ -7,7 +7,10 @@ import {
   Container,
   CommonTable,
   TableHeader,
-  TableDetail
+  TableDetail,
+  EditButton,
+  ButtonArea,
+  DeleteButton
 } from './styles';
 
 @pureComponent
@@ -15,17 +18,30 @@ class Table {
 
   onRenderHeaderFields = (item) => (<th key={item.id}>{item.name}</th>)
   
-  onRenderListItem = (cb, item) => (
+  onRenderListItem = (item) => {
+    const { 
+      onEditFunc,
+      onDeleteItem
+    } = this.props;
+    return (
       <tr key={item._id} className="trSpacing">
         <td key={item.name}>{item.name}</td>
         <td key={item.email}>{item.email}</td>
         <td key={item.updatedAt}>{item.updatedAt}</td>
-        { cb 
-          ? <td><button type="submit" onClick={cb.bind(this, item)}>123</button></td>
+        { onEditFunc || onDeleteItem
+          ? <ButtonArea>
+              <EditButton onClick={onEditFunc.bind(this, item)}>
+                Edit
+              </EditButton>
+              <DeleteButton onClick={onDeleteItem.bind(this, item._id)}>
+                Delete
+              </DeleteButton>
+            </ButtonArea>
           : null
         }
       </tr>
     )
+  }
   
   render() {
     const { 
@@ -47,7 +63,7 @@ class Table {
         <TableDetail>
           <CommonTable>
             <thead>
-              {accountList.map(this.onRenderListItem.bind(this, onEditFunc))}
+              {accountList.map(this.onRenderListItem)}
             </thead>
           </CommonTable>
         </TableDetail>
@@ -66,7 +82,8 @@ Table.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired
   })),
-  onEditFunc: PropTypes.func
+  onEditFunc: PropTypes.func,
+  onDeleteFunc: PropTypes.func
 }
 
 export default connect(null, null)(Table);

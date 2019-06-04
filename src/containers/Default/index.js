@@ -5,8 +5,6 @@ import { connect } from 'react-redux';
 // import { range, sum } from 'd3-array';
 // import { scaleThreshold } from 'd3-scale';
 
-// import worldData from '../../asset/world';
-
 import {
   ContentContainer
 } from './styles';

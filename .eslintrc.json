@@ -8,7 +8,10 @@
     "prettier/react"
   ],
   "rules": {
+    "comma-dangle": 0,
+    "react/no-this-in-sfc": 0,
     "react/prop-types": 0,
+    "react/jsx-no-bind": 0,
     "jsx-a11y/label-has-for": 0,
     "no-console": 1,
     "global-require": 0,
@@ -40,6 +43,11 @@
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
+    }
+  },
+  "settings": {
+    "import/resolver": {
+      "babel-module": {}
     }
   },
   "env": {

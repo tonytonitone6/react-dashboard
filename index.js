@@ -35,7 +35,7 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
     padding: 0;
     margin: 0;
-    font-size: 10px;
+    font-size: 12px;
   }
 
   input {

@@ -4,6 +4,13 @@
     "@babel/preset-react"
   ],
   "plugins": [
+    ["module-resolver", {
+      "root": ["./src"],
+      "alias": {
+        "test": "./test",
+        "underscore": "lodash"
+      }
+    }],
     ["@babel/plugin-transform-runtime", {
       "corejs": false,
       "helpers": true,

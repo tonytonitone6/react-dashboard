@@ -7,5 +7,7 @@ export default {
   userStatus: createAction(types.USER_STATUS),
   accountList: createAction(types.GET_ACCOUNT_LIST),
   searchUser: createAction(types.FILTER_ACCOUNT),
-  sendMessage: createAction(types.SEND_MESSAGE)
+  sendMessage: createAction(types.SEND_MESSAGE),
+  editAccount: createAction(types.EDIT_ACCOUNT),
+  deleteAccount: createAction(types.DELETE_ACCOUNT)
 };

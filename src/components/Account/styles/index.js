@@ -1,7 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import {
-  CommonButton
-} from '../../../styles/elements/Button';
+import elements from 'styles/elements';
 
 const gradient = keyframes`
   0% {
@@ -62,7 +60,7 @@ export const SearchInput = styled.div`
 `;
 
 
-export const SubButton = styled(CommonButton)`
+export const SubButton = styled(elements.CommonButton)`
   
   background-color: #009ac9;
   height: 3.5rem;
@@ -82,5 +80,25 @@ export const SubButton = styled(CommonButton)`
     box-shadow: none;
     transition: all .1s ease-in;
   }
+`;
 
+export const EditArea = styled.div`
+  width: 100%;
+  height: 3rem;
+  margin-left: 3rem;
+  font-size: 2rem;
+  line-height: 3rem;
+`;
+
+export const EditLabel = styled.label`
+  display: inline-block;
+  width: 5rem;
+  margin-right: 2rem;
+`;
+
+export const EditInput = styled(elements.CustomInputField)`
+  border-radius: 1rem;
+  cursor: pointer;
+  background-color: #636e72;
+  padding: 2rem;
 `;

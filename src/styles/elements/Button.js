@@ -11,8 +11,8 @@ export const CommonButton = styled.button`
   cursor: pointer;
   border-radius: 0.5rem;
   transition: all 0.5s ease;
-  &:hover {
+  /* &:hover {
     background-color: #000;
     color: #fff;
-  }
+  } */
 `;

@@ -1,5 +1,33 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import elements from 'styles/elements';
 
+
+
+const orangeButton = '#E74C3C';
+const riverColor = '#74b9ff';
+
+const buttonStyle = css`
+  position: relative;
+  height: 2.5rem;
+  width: 8rem;
+  border: none;
+  color: #fff;
+  overflow: hidden;
+  border-radius: .1rem;
+  cursor: pointer;
+`;
+
+const shadow = css`
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 90%;
+  left: 0;
+  right: 0;
+  background-color: black;
+  opacity: .5;
+`;
 
 export const TableDetail = styled.div`
   height: 80%;
@@ -30,11 +58,13 @@ export const CommonTable = styled.table`
       }
       
       & > td {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         height: 100%;
-        padding: 1rem;
         background-color: #353b48;
         border-right: .2rem solid #435050;
-        border-bottom: .3rem solid #000;
+        border-bottom: .1rem solid #000;
       }
     }
   }
@@ -67,5 +97,39 @@ export const TableHeader = styled.div`
     }
   }
 `;
+
+export const ButtonArea = styled.td`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & > button:first-child {
+    margin-right: 1rem;
+  }
+`;
+
+export const EditButton = styled(elements.CommonButton)`
+  ${buttonStyle};
+  background-color: ${riverColor};
+
+  &::after {
+    ${shadow}
+  }
+
+  /* &:hover::after {
+    transform: translateY(-90%);
+    transition: all .3s linear;
+  } */
+`;
+
+export const DeleteButton = styled(elements.CommonButton)`
+  ${buttonStyle};
+  background-color: ${orangeButton};
+
+  &::after {
+    ${shadow}
+  }
+`;
+
 
 

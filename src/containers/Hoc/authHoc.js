@@ -2,9 +2,9 @@
 import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+// import { Container } from 'styles';
+// import Animation from 'styles/animations';
 import actions from "../../actions";
-import { Container } from '../../styles';
-import Animation from '../../styles/animations';
 
 const mapStateToProps = state => ({
   status: state.signin
