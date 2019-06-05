@@ -1,8 +1,8 @@
 import { call, put } from "redux-saga/effects";
-import _ from "lodash";
+import map from "lodash/map";
 
-import ErrorHandle from '../utils/ErrorHandle';
-import types from "../actions/constants";
+import ErrorHandle from 'utils/ErrorHandle';
+import types from "actions/constants";
 import * as Api from "./api";
 
 export function* userSignup(action) {
@@ -13,7 +13,7 @@ export function* userSignup(action) {
     email: userInfo.get("email"),
     password: userInfo.get("password")
   };
-  const res = _.map(authField, item => userData[item]);
+  const res = map(authField, item => userData[item]);
 
   if (res.includes("")) {
     yield put({ type: types.USER_SIGNUP_FAILURE, msg: "lost data" });

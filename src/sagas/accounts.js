@@ -1,8 +1,8 @@
 import { call, put } from 'redux-saga/effects';
 
-import types from '../actions/constants';
+import types from 'actions/constants';
+import ErrorHandle from 'utils/ErrorHandle';
 import * as api from './api';
-import ErrorHandle from '../utils/ErrorHandle';
 
 export function* getAccountList() {
   const params = {
@@ -17,7 +17,7 @@ export function* getAccountList() {
       yield put({ type: types.ACCOUNT_DATALIST, result});
     }
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }
 
@@ -34,9 +34,20 @@ export function* getFilterUser(action) {
     yield put({ type: types.ACCOUNT_USER, result });
     
   } catch (error) {
-    console.log(error)
+    console.error(error)
   }
+}
 
-
-
+export function* deleteAccount(action) {
+  const params = {
+    endPoint: '/v1/deleteAccount',
+    _id: action.payload
+  };
+  console.log(params);
+  try {
+    const { data: { isSuccess, error, result } } = yield call(api.destroy.bind(this, params));
+    console.log(isSuccess, error, result);
+  } catch (error) {
+    console.error(error);
+  }
 }

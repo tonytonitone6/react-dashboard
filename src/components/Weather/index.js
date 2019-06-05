@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import { pureComponent } from 'react-decoration';
 import { connect } from 'react-redux';
 
 import {

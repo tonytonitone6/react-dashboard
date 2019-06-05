@@ -45,7 +45,8 @@ export const update = async (endpoint, data) => {
   return res;
 };
 
-export const destroy = async (endpoint, data) => {
-  const res = await axios.delete(`${url}${endpoint}`, data);
+export const destroy = async ({ endPoint, ...data}) => {
+  const option = axiosOption.call(this, 'DELETE', data);
+  const res = await axios.delete(`${url}${endPoint}`, { _id: '123' });
   return res;
 };

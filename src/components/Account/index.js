@@ -12,7 +12,6 @@ import actions from 'actions';
 import Table from 'common/Table';
 import Modal from 'common/Modal';
 
-import { isNull } from 'util';
 import {
   AccountContainer,
   SearchField,
@@ -114,8 +113,6 @@ class Account {
       userInfo 
     } = this.state;
 
-    console.log(key, 'key');
-    
     return (
       <EditArea>
         <EditLabel>{label}</EditLabel>
@@ -124,7 +121,6 @@ class Account {
           type={type}
           placeholder={placeholder}
           autoComplete="off"
-          // value={userInfo.get(key)}
           value={ key !== "" ? userInfo.get(key) : ""}
         />
       </EditArea>

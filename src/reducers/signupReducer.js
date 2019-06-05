@@ -1,6 +1,6 @@
 import { handleActions } from "redux-actions";
 import { fromJS } from "immutable";
-import types from "../actions/constants";
+import types from "actions/constants";
 
 const initialState = fromJS({
   isSuccess: false,
