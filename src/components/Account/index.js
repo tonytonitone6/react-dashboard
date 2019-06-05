@@ -100,7 +100,7 @@ class Account {
     });
   }
 
-  onRenderEditContent = (field) => {
+  onRenderEditContent = field => {
     const { 
       type, 
       label,
@@ -112,7 +112,7 @@ class Account {
     const { 
       userInfo 
     } = this.state;
-
+    
     return (
       <EditArea>
         <EditLabel>{label}</EditLabel>
@@ -165,6 +165,7 @@ class Account {
             <SubButton 
               type="submit" 
               onClick={this.onSearchButton}
+              onKeyPress={this.onSearchButton}
             >
               Search
             </SubButton>
@@ -237,9 +238,9 @@ Account.defaultProps = {
   ]
 };
 
-const validate = values => {
-  // console.log(values);
-}
+// const validate = values => {
+//   console.log(values);
+// }
 
 
 const mapStateToProps = createStructuredSelector({
@@ -253,5 +254,5 @@ export default
   )(
     reduxForm({
       form: 'account',
-      validate
+      // validate
   })(Account));

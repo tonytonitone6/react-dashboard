@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 
 export const MainContainer = styled.div`
+  position: relative;
   grid-area: main;
   background-color: #2c3434;
   padding: .5rem;
