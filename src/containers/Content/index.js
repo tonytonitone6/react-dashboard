@@ -4,11 +4,13 @@ import { pureComponent } from 'react-decoration';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
+import Weather from 'components/Weather';
+import Map from 'components/Map';
+import Account from 'components/Account';
+import Default from 'containers/Default';
+import ChatRoom from 'common/ChatRoom';
 
-import Default from '../Default';
-import Weather from '../../components/Weather';
-import Map from '../../components/Map';
-import Account from '../../components/Account';
+
 
 import {
   MainContainer
@@ -39,6 +41,7 @@ class Content {
             </div>
           </CSSTransition>
         </TransitionGroup>
+        <ChatRoom />
       </MainContainer>
     );
   }

@@ -1,5 +1,9 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { pureComponent } from 'react-decoration';
+
+import {
+  ChatArea
+} from './styles';
 // import socketIOClient from 'socket.io-client';
 
 // const socketPort = 'http://localhost:7100';
@@ -17,9 +21,9 @@ class ChatRoom {
 
   render() {
     return (
-      <Fragment>
-        456
-      </Fragment>
+      <ChatArea>
+
+      </ChatArea>
     )
   }
 }
