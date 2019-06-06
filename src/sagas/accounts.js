@@ -30,9 +30,8 @@ export function* getFilterUser(action) {
   };
 
   try {
-    const { data: { isSuccess, error, result } } = yield call(api.get.bind(this, params));
+    const { data: { result } } = yield call(api.get.bind(this, params));
     yield put({ type: types.ACCOUNT_USER, result });
-    
   } catch (error) {
     console.error(error)
   }

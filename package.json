@@ -89,7 +89,6 @@
     "sass-loader": "^7.1.0",
     "source-map-loader": "^0.2.4",
     "style-loader": "^0.23.1",
-    "ts-loader": "^5.3.3",
     "url-loader": "^1.1.2",
     "webpack": "^4.23.0",
     "webpack-bundle-analyzer": "^3.3.2",

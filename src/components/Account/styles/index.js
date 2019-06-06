@@ -88,7 +88,9 @@ export const EditArea = styled.div`
   padding-left: 2rem;
   font-size: 2rem;
   margin: 2rem 0;
-
+  &:nth-child(1) {
+    margin-top: 10rem;
+  }
   & > input[type="file"] {
     display: none;
   }
@@ -103,7 +105,12 @@ export const EditLabel = styled.label`
 export const EditInput = styled(elements.CustomInputField)`
   border-radius: 1rem;
   cursor: pointer;
-  background-color: #636e72;
+  background-color: #fff;
+  border: 1px solid #d9d9d9;
   padding: 2rem;
   height: 100%;
+  transition: border-color .5s ease;
+  &:hover {
+    border-color: #40a9ff;
+  }
 `;

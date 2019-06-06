@@ -7,11 +7,6 @@ import { FullShadow, SignupArea, InputArea, ErrorArea } from "./styles";
 const modalRoot = document.getElementById("modal-root");
 
 class Modal extends Component {
-
-  state = {
-    showModal: false
-  };
-
   el = document.createElement("div");
 
   componentDidMount() {

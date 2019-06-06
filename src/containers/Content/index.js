@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { pureComponent } from 'react-decoration';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import socketIOClient from 'socket.io-client';
+
 
 import Weather from 'components/Weather';
 import Map from 'components/Map';
@@ -10,14 +12,17 @@ import Account from 'components/Account';
 import Default from 'containers/Default';
 import ChatRoom from 'common/ChatRoom';
 
-
-
 import {
   MainContainer
 } from './styles';
 
+const socketPort = 'http://localhost:7100';
+
 @pureComponent
 class Content {
+
+  socket = socketIOClient(socketPort);
+
   render() {
     const { 
       match,
@@ -25,6 +30,7 @@ class Content {
     } = this.props;
     return (
       <MainContainer>
+          <ChatRoom />
         <TransitionGroup className="transition-group">
           <CSSTransition
             key={location.key}
@@ -41,7 +47,6 @@ class Content {
             </div>
           </CSSTransition>
         </TransitionGroup>
-        <ChatRoom />
       </MainContainer>
     );
   }
