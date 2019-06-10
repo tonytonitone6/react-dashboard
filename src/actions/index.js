@@ -8,6 +8,7 @@ export default {
   accountList: createAction(types.GET_ACCOUNT_LIST),
   searchUser: createAction(types.FILTER_ACCOUNT),
   sendMessage: createAction(types.SEND_MESSAGE),
+  addMessageList: createAction(types.ADD_MESSAGE_LIST),
   receivedMessage: createAction(types.RECEIVED_MESSAGE),
   editAccount: createAction(types.EDIT_ACCOUNT),
   deleteAccount: createAction(types.DELETE_ACCOUNT)

@@ -1,12 +1,10 @@
 import { all, takeEvery, takeLatest } from "redux-saga/effects";
+import types from "actions/constants";
 import * as auth from "./auth";
 import * as accounts from './accounts';
-import * as sockets from './socket';
-import types from "../actions/constants";
+import * as chatRoom from './chatroom';
 
-function* rootSagas(socket) {
-  console.log(socket);
-
+function* rootSagas({ socket }) {
   yield all([
     takeEvery(types.USER_SIGNIN, auth.userSignin),
     takeEvery(types.USER_SIGNUP, auth.userSignup)
@@ -22,8 +20,12 @@ function* rootSagas(socket) {
     takeLatest(types.DELETE_ACCOUNT, accounts.deleteAccount)
   ]);
   yield all([
-    takeLatest(types.SEND_MESSAGE, sockets.sendMessage)
+    takeLatest(types.SEND_MESSAGE, chatRoom.sendMessage.bind(this, socket))
   ]);
+
+  // yield all([
+  //   takeEvery(types.ADD_MESSAGE_LIST, chatRoom.addMessageList)
+  // ])
 }
 
 export default rootSagas;

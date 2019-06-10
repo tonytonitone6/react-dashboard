@@ -1,10 +1,17 @@
-// import { call, put } from "redux-saga/effects";
-// import socketIOClient from 'socket.io-client';
+import socketIOClient from 'socket.io-client';
+import actions from 'actions';
 
-// import types from "actions/constants";
-// import * as Api from "./api";
+const socketPort = 'http://localhost:7100';
 
+const socketConnect = (dispatch) => {
+  const socket = socketIOClient(socketPort);
 
-export function* sendMessage(action) {
-  yield
+  socket.on('addMessage', message => {
+    dispatch(actions.addMessageList(message))
+  });
+
+  return socket;
 }
+
+
+export default socketConnect;

@@ -20,7 +20,7 @@ module.exports = ({ mode, API_URI }) =>
         rules: [
           {
             loader: "babel-loader",
-            test: /\.js$/,
+            test: /\.(js|jsx)$/,
             exclude: /node_modules/
           },
           {

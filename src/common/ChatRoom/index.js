@@ -3,18 +3,14 @@ import { connect } from 'react-redux';
 import actions from 'actions';
 import { pureComponent } from 'react-decoration';
 
-import MessageList from 'components/ＭessageList';
+import MessageItem from './messageItem';
+
 import {
   ChatArea,
   ChatButtonLine,
   CommunicationField,
   AddMessage
 } from './styles';
-
-// import socketIOClient from 'socket.io-client';
-
-// const socketPort = 'http://localhost:7100';
-
 
 @pureComponent
 class ChatRoom {
@@ -23,13 +19,6 @@ class ChatRoom {
   state = {
     active: false
   }
-
-  // socket = socketIOClient(socketPort);
-
-  componentDidMount() {
-    // this.socket.emit('receivedMessage', '連線到囉');
-  }
-
 
   onOpenChatRoom = () => {
     this.setState((prevState) => ({
@@ -44,10 +33,10 @@ class ChatRoom {
     const { 
       value 
     } = this.message.current;
-    
+
     if (e.key === 'Enter') {
       sendMessage(value);
-      this.message = '';
+      this.message.current.value = '';
     }
   }
 
@@ -58,8 +47,17 @@ class ChatRoom {
 
   render() {
 
-    const { active } = this.state;
+    const { 
+      active
+    } = this.state;
 
+    const {
+      messages
+    } = this.props;
+
+    
+
+    messages.get('messageList').forEach(item => console.log(item));
     return (
       <Fragment>
         <ChatArea
@@ -75,13 +73,13 @@ class ChatRoom {
           { 
             active && active === true 
             ? [
-                <MessageList 
+                <MessageItem 
                   key="MessageList" 
                 />, 
                 <AddMessage
                   ref={this.message}
                   onKeyPress={this.onSendMessage} 
-                  key="AddMessage" 
+                  key="AddMessage"
                 />
               ] 
             : null
@@ -92,4 +90,9 @@ class ChatRoom {
   }
 }
 
-export default connect(null, { ...actions })(ChatRoom);
+const mapStateToProps = ({messageList}) => ({
+    messages: messageList
+  })
+
+
+export default connect(mapStateToProps, { ...actions })(ChatRoom);
