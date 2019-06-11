@@ -55,9 +55,6 @@ class ChatRoom {
       messages
     } = this.props;
 
-    
-
-    messages.get('messageList').forEach(item => console.log(item));
     return (
       <Fragment>
         <ChatArea
@@ -74,7 +71,8 @@ class ChatRoom {
             active && active === true 
             ? [
                 <MessageItem 
-                  key="MessageList" 
+                  key="MessageList"
+                  messages={messages.get('messageList')}
                 />, 
                 <AddMessage
                   ref={this.message}
