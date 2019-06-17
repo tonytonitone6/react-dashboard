@@ -1,4 +1,16 @@
 import "./node_modules/normalize.css/normalize.css";
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+import { 
+  fas,
+  faEraser, 
+  faAlignLeft, 
+  faAssistiveListeningSystems,
+  faBolt,
+  faShareSquare,
+  faAmericanSignLanguageInterpreting,
+  faMapMarkedAlt
+} from '@fortawesome/free-solid-svg-icons';
 import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
@@ -15,9 +27,7 @@ import store from "./src/store";
 const GlobalStyle = createGlobalStyle`
   *, *::before, *::after {
     box-sizing: border-box;
-    &:focus {
-      outline: none;
-    }
+    outline: none;
   }
 
   html, body, #root {
@@ -25,10 +35,35 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
     padding: 0;
     margin: 0;
-    font-size: 10px;
+    font-size: 12px;
+  }
+
+  input {
+    border-style: none;
+    background: transparent;
+    outline: none;
+  }
+
+  table {
+    border-collapse:collapse;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: inherit;
   }
 `;
-
+library.add(
+  fab,
+  fas,
+  faEraser, 
+  faAlignLeft, 
+  faAssistiveListeningSystems,
+  faBolt,
+  faShareSquare,
+  faAmericanSignLanguageInterpreting,
+  faMapMarkedAlt
+  );
 const LoadableApp = lazy(() => import("./src/containers/App"));
 const LoadableLogin = lazy(() => import("./src/containers/Login"));
 
@@ -40,8 +75,8 @@ ReactDOM.render(
           <GlobalStyle />
           <Suspense fallback={<div />}>
             <Switch>
-              <Route path="/login" component={LoadableLogin} />
-              <Route exact path="/" component={LoadableApp} />
+              <Route exact path="/login" component={LoadableLogin} />
+              <Route path="/" component={LoadableApp} />
             </Switch>
           </Suspense>
         </React.Fragment>

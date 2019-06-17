@@ -4,9 +4,10 @@ import { Field, reduxForm } from "redux-form/immutable";
 import { withRouter } from "react-router-dom";
 import { Map } from "immutable";
 
-import Modal from "../../common/Modal";
-import actions from "../../actions";
-import FacebookSDK from "../../utils/FacebookSDK";
+import FacebookSDK from "utils/FacebookSDK";
+import Modal from "common/Modal";
+import actions from "actions";
+import elements from "styles/elements";
 import {
   Container,
   LoginCard,
@@ -26,7 +27,6 @@ import {
   ErrorArea
 } from "./styles";
 
-import elements from "../../styles/elements";
 
 class Login extends PureComponent {
   state = {
@@ -87,8 +87,13 @@ class Login extends PureComponent {
   };
 
   onRenderModalField = field => {
-    const { type, label, placeholder, input } = field;
-
+    const { 
+      type, 
+      label, 
+      placeholder, 
+      input 
+    } = field;
+    
     return (
       <ModalInputArea>
         <CustomModalLabel>{label}:</CustomModalLabel>
@@ -240,7 +245,7 @@ const validate = values => {
 
   if (!formData.password) {
     errors.password = "Please enter your password";
-  } else if (!passwordRegexp.test(formData.passwoed)) {
+  } else if (!passwordRegexp.test(formData.password)) {
     errors.password = "Invalid password format";
   }
 

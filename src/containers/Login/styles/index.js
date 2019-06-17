@@ -90,8 +90,8 @@ export const InputField = styled.input`
   margin: 1.7rem 0;
   color: #fff;
   font-size: 1.5rem;
-  /* color: hsla(170, 85%, 95%, 0.21); */
   &:focus {
+    outline: none;
     border: 2px solid rgba(255, 255, 255, 0.5);
   }
 `;

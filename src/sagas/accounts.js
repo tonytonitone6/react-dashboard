@@ -1,73 +1,52 @@
-import { call, put } from "redux-saga/effects";
-import _ from "lodash";
+import { call, put } from 'redux-saga/effects';
 
-import ErrorHandle from '../utils/ErrorHandle';
-import types from "../actions/constants";
-import * as Api from "./api";
+import types from 'actions/constants';
+import ErrorHandle from 'utils/ErrorHandle';
+import * as api from './api';
 
-export function* userSignup(action) {
-  const userInfo = action.payload;
-  const authField = ["name", "email", "password"];
-  const userData = {
-    name: userInfo.get("name"),
-    email: userInfo.get("email"),
-    password: userInfo.get("password")
+export function* getAccountList() {
+  const params = {
+    endPoint: '/v1/getAccountList'
   };
-  const res = _.map(authField, item => userData[item]);
 
-  if (res.includes("")) {
-    yield put({ type: types.USER_SIGNUP_FAILURE, msg: "lost data" });
-  } else {
-    const { data } = yield call(
-      Api.post.bind(this, "/v1/userSignup", userData)
-    );
-    data && data.isSuccess
-      ? yield put({ type: types.USER_SIGNUP_SUCCESS, ...data })
-      : yield put({ type: types.USER_SIGNUP_FAILURE, ...data });
+  try {
+    const { data: { isSuccess, error, result }} = yield call(api.get.bind(this, params));
+    if (!isSuccess) {
+      throw new ErrorHandle(error)
+    } else {
+      yield put({ type: types.ACCOUNT_DATALIST, result});
+    }
+  } catch (error) {
+    console.error(error);
   }
 }
 
-export function* userSignin(action) {
-  const userLoginData = action.payload;
-  const authData = {
-    email: userLoginData.get("email"),
-    password: userLoginData.get("password")
+
+export function* getFilterUser(action) {
+  const params = {
+    endPoint: '/v1/getUser',
+    userName: action.payload.get('userName'),
+    email: action.payload.get('email')
   };
+
   try {
-    const { data: { error, isSuccess, result } } = yield call(Api.post.bind(this, "/v1/userSignin", authData));
-    if (isSuccess && result !== '') {
-      localStorage.setItem('authToken', result);
-      yield put({ type: types.USER_SIGNIN_SUCCESS, result: { isSuccess, token: result } });
-    } else {
-      const errorMsg = {
-        error,
-        isSuccess,
-        result
-      };
-      throw new ErrorHandle(errorMsg);
-    }
+    const { data: { result } } = yield call(api.get.bind(this, params));
+    yield put({ type: types.ACCOUNT_USER, result });
   } catch (error) {
-    yield put({ type: types.USER_SIGNIN_FAILURE, result: error.toMessage() });
+    console.error(error)
   }
 }
 
-export function* userSigninStatus() {
-  const token = localStorage.getItem('authToken');
+export function* deleteAccount(action) {
+  const params = {
+    endPoint: '/v1/deleteAccount',
+    _id: action.payload
+  };
+  console.log(params);
   try {
-    if (!token && token === 'undefined') {
-      const params = {
-        message: 'token isn\'t exist'
-      };
-      throw new ErrorHandle(params);
-    } else {
-      const { data: { isSuccess, error } } = yield call(Api.get.bind(this, '/v1/userStatus'));
-      if (!isSuccess && error.message !== '') {
-        throw new ErrorHandle(error);
-      } else {
-        yield put({ type: types.USER_SIGNIN_SUCCESS, result: { isSuccess, error: {} } });
-      }
-    }
+    const { data: { isSuccess, error, result } } = yield call(api.destroy.bind(this, params));
+    console.log(isSuccess, error, result);
   } catch (error) {
-    yield put({ type: types.USER_SIGNIN_FAILURE, result: error.toMessage() });
+    console.error(error);
   }
 }
