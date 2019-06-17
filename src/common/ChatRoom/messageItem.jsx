@@ -22,6 +22,7 @@ const MessageItem = ({ messages }) => {
     <MessageArea
       ref={refList}
     >
+      123
       {messages.map(onRenderMessage)}
     </MessageArea>
   );
