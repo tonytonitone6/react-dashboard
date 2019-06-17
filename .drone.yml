@@ -3,5 +3,5 @@ pipeline:
     image: node:11.13.0
     commands:
       - yarn install
-      - yarn run dev
+      - yarn dev
       - 
