@@ -1,7 +1,7 @@
 /* eslint-disable no-else-return */
 import React, { PureComponent } from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 // import { Container } from 'styles';
 // import Animation from 'styles/animations';
 import actions from "../../actions";
@@ -22,16 +22,15 @@ export default WrapperComponent =>
       userStatus();
     }
 
-    componentDidUpdate() {
-      const { status, history } = this.props;
-      const statusResult = status.get("isSuccess");
-      if (statusResult !== true) {
-        history.push('login');
-      }
-    }
-
     render() {
       const { status } = this.props;
+      const statusResult = status.get("isSuccess");
+
+      if (statusResult !== true) {
+        return <Redirect to={{
+          pathname: '/login'
+        }}/>
+      }
       return <WrapperComponent {...this.props} />;
       // if (status.get("isSuccess")) {
       //   return <WrapperComponent {...this.props} />;
@@ -45,4 +44,4 @@ export default WrapperComponent =>
       //   )
       // }
     }
-  };
+  }

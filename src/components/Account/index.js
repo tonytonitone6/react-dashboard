@@ -19,7 +19,8 @@ import {
   SubButton,
   EditArea,
   EditLabel,
-  EditInput
+  EditInput,
+  UploadButton
 } from './styles';
 
 
@@ -35,6 +36,11 @@ class Account {
     searchInfo: Map({
       userName: "",
       email: ""
+    }),
+    editInfo: Map({
+      userName: "",
+      email: "",
+      avatar: ""
     }),
     showModal: false,
   }
@@ -100,6 +106,17 @@ class Account {
     });
   }
 
+  onUploadImage = e => {
+    const [file] = e.target.files;
+    const formData = new FormData()
+
+    formData.append(file.name, file);
+    
+    this.setState((prevState) => ({
+      editInfo: prevState.editInfo.set('avatar', formData)
+    }));
+  }
+
   onRenderEditContent = field => {
     const { 
       type, 
@@ -112,6 +129,22 @@ class Account {
     const { 
       userInfo 
     } = this.state;
+
+    if (field.type === 'file') {
+      return (
+        <EditArea>
+          <UploadButton>
+            <input 
+              { ...input }
+              type={type}
+              onChange={this.onUploadImage}
+              
+            />
+            upload
+          </UploadButton>
+        </EditArea>
+      )
+    }
     
     return (
       <EditArea>

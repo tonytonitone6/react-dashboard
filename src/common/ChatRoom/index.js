@@ -33,8 +33,8 @@ class ChatRoom {
     const { 
       value 
     } = this.message.current;
-
-    if (e.key === 'Enter') {
+  
+    if (e.key === 'Enter' && value !== '') {
       sendMessage(value);
       this.message.current.value = '';
     }
@@ -44,7 +44,6 @@ class ChatRoom {
     this.message = null;
   }
   
-
   render() {
 
     const { 
@@ -90,7 +89,7 @@ class ChatRoom {
 
 const mapStateToProps = ({messageList}) => ({
     messages: messageList
-  })
+  });
 
 
 export default connect(mapStateToProps, { ...actions })(ChatRoom);

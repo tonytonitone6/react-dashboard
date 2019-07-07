@@ -12,9 +12,13 @@ const axiosOption = (methods, params = {}) => {
     }
   }
 
-  const option = methods === 'GET' 
-    ? Object.assign({}, config, { params }) 
-    : Object.assign({}, config, { ...params });
+  const option = methods === 'GET' ?
+    Object.assign({}, config, {
+      params
+    }) :
+    Object.assign({}, config, {
+      ...params
+    });
 
   return option;
 };
@@ -27,14 +31,20 @@ export const list = async (endpoint, data = undefined, option = {}) => {
   return res;
 };
 
-export const post = async ({ endPoint, ...data }) => {
+export const post = async ({
+  endPoint,
+  ...data
+}) => {
   const option = axiosOption.call(this, 'POST', data);
   const res = await axios.post(`${url}${endPoint}`, option);
-  
+
   return res;
 };
 
-export const get = async ({ endPoint , ...data}) => {
+export const get = async ({
+  endPoint,
+  ...data
+}) => {
   const option = axiosOption.call(this, 'GET', data);
   const res = await axios.get(`${url}${endPoint}`, option);
   return res;
@@ -45,7 +55,10 @@ export const update = async (endpoint, data) => {
   return res;
 };
 
-export const destroy = async ({ endPoint, ...data}) => {
+export const destroy = async ({
+  endPoint,
+  ...data
+}) => {
   const option = axiosOption.call(this, 'DELETE', data);
   const res = await axios.delete(`${url}${endPoint}`, option);
   return res;

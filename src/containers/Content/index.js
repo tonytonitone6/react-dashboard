@@ -25,7 +25,7 @@ class Content {
     } = this.props;
     return (
       <MainContainer>
-          <ChatRoom />
+        <ChatRoom />
         <TransitionGroup className="transition-group">
           <CSSTransition
             key={location.key}

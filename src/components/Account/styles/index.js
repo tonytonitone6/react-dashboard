@@ -91,9 +91,7 @@ export const EditArea = styled.div`
   &:nth-child(1) {
     margin-top: 10rem;
   }
-  & > input[type="file"] {
-    display: none;
-  }
+
 `;
 
 export const EditLabel = styled.label`
@@ -112,5 +110,15 @@ export const EditInput = styled(elements.CustomInputField)`
   transition: border-color .5s ease;
   &:hover {
     border-color: #40a9ff;
+  }
+`;
+
+export const UploadButton = styled.label`
+  display: inline-block;
+  width: 6rem;
+  height: 3rem;
+  background-color: pink;
+  & > input[type="file"] {
+    display: none;
   }
 `;

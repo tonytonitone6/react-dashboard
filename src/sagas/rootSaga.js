@@ -22,10 +22,6 @@ function* rootSagas({ socket }) {
   yield all([
     takeLatest(types.SEND_MESSAGE, chatRoom.sendMessage.bind(this, socket))
   ]);
-
-  // yield all([
-  //   takeEvery(types.ADD_MESSAGE_LIST, chatRoom.addMessageList)
-  // ])
 }
 
 export default rootSagas;
