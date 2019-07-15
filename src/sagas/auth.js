@@ -1,8 +1,9 @@
-import { call, put } from "redux-saga/effects";
+import { call, put, all } from "redux-saga/effects";
 import map from "lodash/map";
 
 import ErrorHandle from 'utils/ErrorHandle';
 import types from "actions/constants";
+import storage from 'utils/LocalStorage';
 import * as Api from "./api";
 
 export function* userSignup(action) {
@@ -36,10 +37,14 @@ export function* userSignin(action) {
   };
 
   try {
-    const { data: { error, isSuccess, result } } = yield call(Api.post.bind(this, authData));
-    if (isSuccess && result !== '') {
-      localStorage.setItem('authToken', result);
-      yield put({ type: types.USER_SIGNIN_SUCCESS, result: { isSuccess, token: result } });
+    const { data: { error, isSuccess, result: { token, _id } } } = yield call(Api.post.bind(this, authData));
+    if (isSuccess && token !== '') {
+      storage.set('authToken', token);
+      yield all([
+        put({ type: types.USER_INFO, result: { _id } }),
+        put({ type: types.USER_SIGNIN_SUCCESS, result: { isSuccess, token } })
+      ])
+      // yield put({ type: types.USER_SIGNIN_SUCCESS, result: { isSuccess, token: result } });
     } else {
       const errorMsg = {
         error,
@@ -54,14 +59,14 @@ export function* userSignin(action) {
 }
 
 export function* userSigninStatus() {
-  const token = localStorage.getItem('authToken');
+  const token = storage.get('authToken');
 
   const params = {
     endPoint: '/v1/userStatus'
   };
 
   try {
-    if (!token && token === 'undefined') {
+    if (!token && (token === null || token === '')) {
       const errorParams = {
         message: 'token isn\'t exist'
       };

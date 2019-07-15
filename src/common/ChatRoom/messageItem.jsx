@@ -5,11 +5,11 @@ import {
   ContentItem
 } from './styles';
 
+
+
 const MessageItem = ({ messages }) => {
-
-
   const refList = useRef(null);
-  
+
   useEffect(() => {
     const height = refList.current.scrollHeight
     refList.current.scrollTo(0, height);

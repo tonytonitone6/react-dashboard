@@ -42,7 +42,7 @@ export function* deleteAccount(action) {
     endPoint: '/v1/deleteAccount',
     _id: action.payload
   };
-  console.log(params);
+
   try {
     const { data: { isSuccess, error, result } } = yield call(api.destroy.bind(this, params));
     console.log(isSuccess, error, result);

@@ -5,23 +5,24 @@ import axios from 'axios';
 
 const url = process.env.API_URI;
 
-const axiosOption = (methods, params = {}) => {
-  const config = {
-    headers: {
-      Authorization: localStorage.getItem('authToken')
+const axiosOptions = {
+  setting() {
+    this.headers = {
+      headers: {
+        Authorization: localStorage.getItem('authToken')
+      }
     }
+    return this;
+  },
+  init(params = {}) {
+    return Object.assign({}, this.headers, { params });
+  },
+  post(params = {}) {
+    return Object.assign({}, this.headers, { ...params });
   }
+}
 
-  const option = methods === 'GET' ?
-    Object.assign({}, config, {
-      params
-    }) :
-    Object.assign({}, config, {
-      ...params
-    });
-
-  return option;
-};
+const combinedOption = () => Object.create(axiosOptions);
 
 export const list = async (endpoint, data = undefined, option = {}) => {
   const params = {
@@ -35,9 +36,13 @@ export const post = async ({
   endPoint,
   ...data
 }) => {
-  const option = axiosOption.call(this, 'POST', data);
+  const option = 
+    combinedOption()
+    .setting()
+    .post(data);
+    
   const res = await axios.post(`${url}${endPoint}`, option);
-
+  console.log(res);
   return res;
 };
 
@@ -45,7 +50,7 @@ export const get = async ({
   endPoint,
   ...data
 }) => {
-  const option = axiosOption.call(this, 'GET', data);
+  const option = combinedOption().setting().init(data);
   const res = await axios.get(`${url}${endPoint}`, option);
   return res;
 };
@@ -59,7 +64,7 @@ export const destroy = async ({
   endPoint,
   ...data
 }) => {
-  const option = axiosOption.call(this, 'DELETE', data);
+  const option = combinedOption().setting().init(data);
   const res = await axios.delete(`${url}${endPoint}`, option);
   return res;
 };

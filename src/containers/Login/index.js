@@ -136,7 +136,6 @@ class Login extends PureComponent {
   render() {
     const { handleSubmit, submitting } = this.props;
     const { showModal } = this.state;
-
     return (
       <Fragment>
         <Container>

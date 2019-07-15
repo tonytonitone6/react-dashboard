@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import actions from 'actions';
 import { pureComponent } from 'react-decoration';
 
-import MessageItem from './messageItem';
+import MessageItem from './MessageItem';
 
 import {
   ChatArea,
@@ -25,6 +25,8 @@ class ChatRoom {
       active: !prevState.active
     }));
   }
+
+  isActive = (status) => status === true ? 'active' : '';
 
   onSendMessage = (e) => {
     const {
@@ -57,14 +59,14 @@ class ChatRoom {
     return (
       <Fragment>
         <ChatArea
-          className={active === true ? 'active' : ''}
+          className={this.isActive(active)}
           onClick={this.onOpenChatRoom} 
         >
           <ChatButtonLine />
           <ChatButtonLine />
         </ChatArea>
         <CommunicationField 
-          className={active === true ? 'active' : ''} 
+          className={this.isActive(active)} 
         >
           { 
             active && active === true 

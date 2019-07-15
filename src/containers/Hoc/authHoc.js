@@ -31,6 +31,7 @@ export default WrapperComponent =>
           pathname: '/login'
         }}/>
       }
+
       return <WrapperComponent {...this.props} />;
       // if (status.get("isSuccess")) {
       //   return <WrapperComponent {...this.props} />;

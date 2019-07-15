@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import {
-  SidemenuContainer,
+  SideMenuContainer,
   SideMenuList,
   SideMenuItem,
   InsideDiv,
@@ -41,7 +41,7 @@ class SideMenu extends PureComponent {
                 <span>{item.name}</span>
               </Link>
             </li>
-          ))}
+          )) }
         </InsideUl>
       </Fragment>
     )
@@ -56,11 +56,11 @@ class SideMenu extends PureComponent {
   render() {
     const { menuList } = this.props;
     return (
-      <SidemenuContainer active>
+      <SideMenuContainer active>
         <SideMenuList>
           {menuList.map(this.onRenderOutside)}
         </SideMenuList>
-      </SidemenuContainer>
+      </SideMenuContainer>
     );
   }
 }

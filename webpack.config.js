@@ -16,8 +16,8 @@ module.exports = ({ mode, API_URI }) =>
       module: {
         rules: [
           {
-            loader: "babel-loader",
-            test: /\.(js|jsx)$/,
+            test: /\.(js|jsx)?$/,
+            use: ["babel-loader"],
             exclude: /node_modules/
           },
           {
@@ -28,6 +28,9 @@ module.exports = ({ mode, API_URI }) =>
             })
           }
         ]
+      },
+      resolve: {
+        extensions: ['.js', '.jsx'],
       }
     },
     modeConfig(mode, API_URI)

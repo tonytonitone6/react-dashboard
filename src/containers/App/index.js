@@ -7,7 +7,7 @@ import Header from 'components/Header';
 import Footer from 'components/Footer';
 import Content from 'containers/Content';
 import SideNav from 'containers/SideNav';
-import authRoute from "../Hoc/authHoc";
+import authRoute from 'containers/Hoc/authHoc';
 import {
   Container
 } from './styles';

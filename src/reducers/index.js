@@ -5,13 +5,15 @@ import signinReducer from "./signinReducer";
 import signupReducer from "./signupReducer";
 import accountsReducer from './accountReducer';
 import socketReducer from './socketReducer';
+import userReducer from './userReducer';
 
 const rootReducer = combineReducers({
   signup: signupReducer,
   signin: signinReducer,
   form: formReducer,
   accountList: accountsReducer,
-  messageList: socketReducer
+  messageList: socketReducer,
+  userInfo: userReducer
 });
 
 export default rootReducer;
