@@ -10,17 +10,18 @@ export function* getAccountList() {
   };
 
   try {
-    const { data: { isSuccess, error, result }} = yield call(api.get.bind(this, params));
+    const {
+      data: { isSuccess, error, result }
+    } = yield call(api.get.bind(this, params));
     if (!isSuccess) {
-      throw new ErrorHandle(error)
+      throw new ErrorHandle(error);
     } else {
-      yield put({ type: types.ACCOUNT_DATALIST, result});
+      yield put({ type: types.ACCOUNT_DATALIST, result });
     }
   } catch (error) {
     console.error(error);
   }
 }
-
 
 export function* getFilterUser(action) {
   const params = {
@@ -30,10 +31,12 @@ export function* getFilterUser(action) {
   };
 
   try {
-    const { data: { result } } = yield call(api.get.bind(this, params));
+    const {
+      data: { result }
+    } = yield call(api.get.bind(this, params));
     yield put({ type: types.ACCOUNT_USER, result });
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
 }
 
@@ -44,7 +47,9 @@ export function* deleteAccount(action) {
   };
 
   try {
-    const { data: { isSuccess, error, result } } = yield call(api.destroy.bind(this, params));
+    const {
+      data: { isSuccess, error, result }
+    } = yield call(api.destroy.bind(this, params));
     console.log(isSuccess, error, result);
   } catch (error) {
     console.error(error);
