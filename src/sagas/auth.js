@@ -49,7 +49,8 @@ export function* userSignin(action) {
     } = yield call(Api.post.bind(this, authData));
 
     if (isSuccess && token !== '') {
-      storage.set('authToken', token);
+      // storage.set('authToken', token);
+      localStorage.setItem('authToken', token);
       yield all([
         put({ type: types.USER_INFO, result: { _id } }),
         put({ type: types.USER_SIGNIN_SUCCESS, result: { isSuccess, token } })
@@ -69,7 +70,8 @@ export function* userSignin(action) {
 }
 
 export function* userSigninStatus() {
-  const token = storage.get('authToken');
+  // const token = storage.get('authToken');
+  const token = localStorage.getItem('authToken');
 
   const params = {
     endPoint: '/v1/userStatus'

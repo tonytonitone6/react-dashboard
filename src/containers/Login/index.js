@@ -1,8 +1,11 @@
-import React, { Fragment, PureComponent } from "react";
+import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form/immutable";
 import { withRouter } from "react-router-dom";
 import { Map } from "immutable";
+import { 
+  pureComponent
+} from 'react-decoration';
 
 import FacebookSDK from "utils/FacebookSDK";
 import Modal from "common/Modal";
@@ -27,8 +30,8 @@ import {
   ErrorArea
 } from "./styles";
 
-
-class Login extends PureComponent {
+@pureComponent
+class Login {
   state = {
     showModal: false,
     userInfo: Map({
@@ -53,6 +56,7 @@ class Login extends PureComponent {
   onFacebooksignup = () => {
     FacebookSDK.login();
   };
+
 
   onSubmit = values => {
     const { reset, userSignin } = this.props;

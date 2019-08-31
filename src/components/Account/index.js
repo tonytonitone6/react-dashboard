@@ -144,6 +144,7 @@ class Account {
           </UploadButton>
         </EditArea>
       )
+
     }
     
     return (
@@ -167,7 +168,9 @@ class Account {
   }
 
   render() {
+    
     const { accounts, fields } = this.props;
+    console.log(accounts);
     const { 
       searchInfo,
       showModal
