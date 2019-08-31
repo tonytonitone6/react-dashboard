@@ -2,9 +2,9 @@
 import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 import { withRouter, Redirect } from "react-router-dom";
-// import { Container } from 'styles';
-// import Animation from 'styles/animations';
-import actions from "../../actions";
+import { Container } from 'styles';
+import Animation from 'styles/animations';
+import actions from "actions";
 
 const mapStateToProps = state => ({
   status: state.signin
@@ -32,17 +32,17 @@ export default WrapperComponent =>
         }}/>
       }
 
-      return <WrapperComponent {...this.props} />;
-      // if (status.get("isSuccess")) {
-      //   return <WrapperComponent {...this.props} />;
-      // } else {
-      //   return (
-      //     <Container>
-      //       <Animation.loading.CircleContainer>
-      //         <Animation.loading.SmallCycle />
-      //       </Animation.loading.CircleContainer>
-      //     </Container>
-      //   )
-      // }
+      // return <WrapperComponent {...this.props} />;
+      if (status.get("isSuccess")) {
+        return <WrapperComponent {...this.props} />;
+      } else {
+        return (
+          <Container>
+            <Animation.loading.CircleContainer>
+              <Animation.loading.SmallCycle />
+            </Animation.loading.CircleContainer>
+          </Container>
+        )
+      }
     }
   }
